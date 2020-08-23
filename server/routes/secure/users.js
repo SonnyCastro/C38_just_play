@@ -1,6 +1,5 @@
-const router = require('express').Router();
-(cloudinary = require('cloudinary').v2),
-  (isAdmin = require('../../middleware/authorization/index'));
+const router = require('express').Router(),
+  cloudinary = require('cloudinary').v2;
 
 // ***********************************************//
 // Get current user

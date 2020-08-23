@@ -6,7 +6,7 @@ const passport = require('passport'),
 // ******************************
 // JWT Strategy
 // ******************************
-let jwtOptions = {
+const jwtOptions = {
   jwtFromRequest: (req) => {
     return req.cookies.jwt || ExtractJwt.fromAuthHeaderWithScheme('jwt')(req);
   },
@@ -19,8 +19,8 @@ passport.use(
     if (Date.now() > jwtPayload.expires) {
       return done(null, false, { message: 'jwt expired' });
     }
-    let { iat, exp, ...userData } = jwtPayload;
-    userData = await User.findById(userData._id);
+
+    const userData = await User.findById(jwtPayload._id);
     return done(null, userData);
   }),
 );
