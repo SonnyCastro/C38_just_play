@@ -1,11 +1,47 @@
-const router = require('express').Router();
+const router = require('express').Router(),
+  User = require('../../db/models/user');
 
-// JUST FOR DEMO PURPOSES, PUT YOUR ACTUAL API CODE HERE
-router.get('/api/demo', (request, response) => {
-  response.json({
-    message: 'Hello from server.js'
-  });
+// ***********************************************//
+// Create a user
+// ***********************************************//
+router.post('/api/users/', async (req, res) => {
+  const { name, email, password } = req.body;
+  try {
+    const user = new User({
+      name,
+      email,
+      password,
+    });
+
+    const token = await user.generateAuthToken();
+    res.cookie('jwt', token, {
+      httpOnly: true,
+      sameSite: 'Strict',
+      secure: process.env.NODE_ENV !== 'production' ? false : true,
+    });
+    res.status(201).json(user);
+  } catch (e) {
+    res.status(400).json({ error: e.toString() });
+  }
 });
-// END DEMO
+
+// ***********************************************//
+// Login a user
+// ***********************************************//
+router.post('/api/users/login', async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const user = await User.findByCredentials(email, password);
+    const token = await user.generateAuthToken();
+    res.cookie('jwt', token, {
+      httpOnly: true,
+      sameSite: 'Strict',
+      secure: process.env.NODE_ENV !== 'production' ? false : true,
+    });
+    res.json(user);
+  } catch (e) {
+    res.status(400).json({ error: e.toString() });
+  }
+});
 
 module.exports = router;
