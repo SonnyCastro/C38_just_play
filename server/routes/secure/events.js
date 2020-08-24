@@ -39,10 +39,6 @@ router.get('/api/events/:id', async (req, res) => {
 
 // ***********************************************//
 // Get all tasks
-// /tasks?completed=true
-// /tasks?limit=10&skip=10
-// /tasks?sortBy=createdAt:asc
-// /tasks?sortBy=dueDate:desc
 // ***********************************************//
 router.get('/api/events', async (req, res) => {
   const { eventType } = req.query;
