@@ -2,39 +2,43 @@ const mongoose = require('mongoose');
 const moment = require('moment');
 const eventSchema = new mongoose.Schema(
   {
-    eventTitle: {
+    title: {
       type: String,
       required: true,
     },
-    eventReccommendation: {
+    reccommendation: {
       type: String,
       required: true,
     },
-    eventLocation: {
+    location: {
       type: String,
       required: true,
     },
-    eventTime: {
+    time: {
       type: Date,
       required: true,
     },
-    eventType: {
-      type: Array,
+    type: {
+      type: String,
+      enum: ['soccer'],
       required: true,
     },
-    eventAttendees: {
-      type: Array,
-      required: true,
-    },
-    eventPrice: {
+    attendees: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+      },
+    ],
+    price: {
       type: String,
       required: true,
     },
-    eventOwner: {
+    owner: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
+      required: true,
     },
-    eventRating: {
+    rating: {
       type: Number,
     },
   },
@@ -44,8 +48,8 @@ const eventSchema = new mongoose.Schema(
 eventSchema.methods.toJSON = function () {
   const event = this;
   const eventObject = event.toObject();
-  if (eventObject.eventTime) {
-    eventObject.eventTime = moment(eventObject.eventTime).format('LLLL');
+  if (eventObject.time) {
+    eventObject.time = moment(eventObject.time).format('LLLL');
   }
   return eventObject;
 };
