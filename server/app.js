@@ -4,8 +4,8 @@ const express = require('express'),
   openRoutes = require('./routes/open'),
   passport = require('./middleware/authentication/'),
   userRoutes = require('./routes/secure/users'),
-  eventRoutes = require('./routes/secure/events');
-cookieParser = require('cookie-parser');
+  eventRoutes = require('./routes/secure/events'),
+  cookieParser = require('cookie-parser');
 
 const app = express();
 
