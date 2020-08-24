@@ -45,7 +45,7 @@ eventSchema.methods.toJSON = function () {
   const event = this;
   const eventObject = event.toObject();
   if (eventObject.eventTime) {
-    eventObject.eventTime = moment(eventObject.eventTime).format('YYYY-MM-DD');
+    eventObject.eventTime = moment(eventObject.eventTime).format('LLLL');
   }
   return eventObject;
 };

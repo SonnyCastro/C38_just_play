@@ -4,6 +4,7 @@ const express = require('express'),
   openRoutes = require('./routes/open'),
   passport = require('./middleware/authentication/'),
   userRoutes = require('./routes/secure/users'),
+  eventRoutes = require('./routes/secure/events'),
   cookieParser = require('cookie-parser');
 
 const app = express();
@@ -24,6 +25,7 @@ app.use(
 );
 
 app.use(userRoutes);
+app.use(eventRoutes);
 
 // Serve any static files
 if (process.env.NODE_ENV === 'production') {
