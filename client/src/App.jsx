@@ -1,9 +1,9 @@
-// import React, { useState, useEffect } from 'react';
 import React from 'react';
 import { AppContextProvider } from './context/AppContext';
-//import Login from './components/Login';
-import './App.css';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Login from './components/Login';
 import CreateAccount from './components/CreateAccount';
+import './App.css';
 
 const App = () => {
   //   const [serverMessage, setServerMessage] = useState('');
@@ -18,10 +18,15 @@ const App = () => {
 
   return (
     <AppContextProvider>
-      <div id="demo">
-        {/* <Login /> */}
-        <CreateAccount />
-      </div>
+      <BrowserRouter>
+        <Switch>
+          <div id="demo">
+            <Route exact path="/register" component={CreateAccount} />
+            <Route exact path="/login" component={Login} />
+            {/* <Route exact path="/" component={Home} /> */}
+          </div>
+        </Switch>
+      </BrowserRouter>
     </AppContextProvider>
   );
 };
