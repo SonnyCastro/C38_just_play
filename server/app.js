@@ -7,7 +7,6 @@ const express = require('express'),
   eventRoutes = require('./routes/secure/events');
 const fileUpload = require('express-fileupload');
 cookieParser = require('cookie-parser');
-fileUpload = require('express-fileupload');
 
 const app = express();
 
