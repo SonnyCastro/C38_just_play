@@ -58,11 +58,19 @@ const userSchema = new mongoose.Schema(
   },
 );
 
+<<<<<<< HEAD
 //connect to events (tie them to eachother)
 userSchema.virtual('events', {
   ref: Event,
   localField: '_id',
   foreignField: 'eventOwner',
+=======
+// Create relation between User and task.
+userSchema.virtual('events', {
+  ref: Event,
+  localField: '_id',
+  foreignField: 'owner',
+>>>>>>> 5210a32ad9ac03eeea0d1c69f0689cc084706700
 });
 
 // By naming this method toJSON we don't need to call it for it to run because of our express res.send methods calls it for us.
