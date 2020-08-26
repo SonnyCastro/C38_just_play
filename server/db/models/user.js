@@ -58,6 +58,13 @@ const userSchema = new mongoose.Schema(
   },
 );
 
+//connect to events (tie them to eachother)
+userSchema.virtual('events', {
+  ref: Event,
+  localField: '_id',
+  foreignField: 'eventOwner',
+});
+
 // By naming this method toJSON we don't need to call it for it to run because of our express res.send methods calls it for us.
 userSchema.methods.toJSON = function () {
   const user = this;
@@ -97,8 +104,7 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
-// new \/
-// Delete user event whe a user is removed
+// Delete user events when a user is removed
 userSchema.pre('remove', async function (next) {
   const user = this;
   await Event.deleteMany({

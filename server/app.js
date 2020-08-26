@@ -4,17 +4,21 @@ const express = require('express'),
   openRoutes = require('./routes/open'),
   passport = require('./middleware/authentication/'),
   userRoutes = require('./routes/secure/users'),
-  cookieParser = require('cookie-parser');
+  eventRoutes = require('./routes/secure/events');
+const fileUpload = require('express-fileupload');
+cookieParser = require('cookie-parser');
+fileUpload = require('express-fileupload');
 
 const app = express();
 
 //Middleware
 app.use(express.json());
+app.use(openRoutes);
 
 // Unauthenticated routes
 app.use(openRoutes);
 
-// gives us access to resp.cookies
+// gives us access to req.cookies
 app.use(cookieParser());
 
 app.use(
@@ -23,7 +27,16 @@ app.use(
   }),
 );
 
+// This middleware gives us access to the req.files object
+app.use(
+  fileUpload({
+    useTempFiles: true,
+    tempFileDir: '/tmp/images',
+  }),
+);
+
 app.use(userRoutes);
+app.use(eventRoutes);
 
 // Serve any static files
 if (process.env.NODE_ENV === 'production') {
