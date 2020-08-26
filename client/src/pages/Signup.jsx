@@ -59,12 +59,6 @@ const SignUp = ({ history }) => {
             onChange={handleChange}
           />
         </Form.Group>
-        <Form.Group
-          controlId="formBasicCheckbox"
-          className="d-flex justify-content-end"
-        >
-          <Form.Check type="checkbox" label="Check admin to make events" />
-        </Form.Group>
         <Form.Group className="d-flex justify-content-center">
           <Button type="submit">Create Account</Button>
         </Form.Group>
