@@ -1,12 +1,14 @@
 const router = require('express').Router(),
   mongoose = require('mongoose'),
   IsAdmin = require('../../middleware/authorization/index'),
-  Event = require('../../db/models/event');
+  Event = require('../../db/models/event'),
+  cloudinary = require('cloudinary');
 
 // **************************************//
 // Create an Event
 // **************************************//
-router.post('/api/events', IsAdmin(), async (req, res) => {
+router.post('/api/events', async (req, res) => {
+  console.log(req.body);
   const event = new Event({
     ...req.body,
     owner: req.user._id,
@@ -38,7 +40,7 @@ router.get('/api/events/:id', async (req, res) => {
 });
 
 // ***********************************************//
-// Get all tasks
+// Get all event
 // ***********************************************//
 router.get('/api/events', async (req, res) => {
   const { eventType } = req.query;
@@ -55,7 +57,7 @@ router.get('/api/events', async (req, res) => {
 });
 
 // ***********************************************//
-// Delete a task
+// Delete a events
 // ***********************************************//
 router.delete('/api/events/:id', async (req, res) => {
   try {
@@ -67,6 +69,22 @@ router.delete('/api/events/:id', async (req, res) => {
     res.json(event);
   } catch (error) {
     res.status(404).json({ error: error.toString() });
+  }
+});
+
+// ***********************************************//
+// Upload event img
+// ***********************************************//
+router.post('/api/events/img', async (req, res) => {
+  try {
+    const response = await cloudinary.uploader.upload(
+      req.files.avatar.tempFilePath,
+    );
+    req.user.avatar = response.secure_url;
+    await req.user.save();
+    res.json(response);
+  } catch (error) {
+    res.status(400).json({ error: error.toString() });
   }
 });
 

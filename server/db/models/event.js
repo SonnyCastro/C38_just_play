@@ -2,11 +2,14 @@ const mongoose = require('mongoose');
 const moment = require('moment');
 const eventSchema = new mongoose.Schema(
   {
+    image: {
+      type: String,
+    },
     title: {
       type: String,
       required: true,
     },
-    reccommendation: {
+    description: {
       type: String,
       required: true,
     },
@@ -20,7 +23,6 @@ const eventSchema = new mongoose.Schema(
     },
     type: {
       type: String,
-      enum: ['soccer'],
       required: true,
     },
     attendees: [
@@ -31,7 +33,6 @@ const eventSchema = new mongoose.Schema(
     ],
     price: {
       type: String,
-      required: true,
     },
     owner: {
       type: mongoose.Schema.Types.ObjectId,

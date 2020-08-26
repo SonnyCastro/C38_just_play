@@ -3,7 +3,10 @@ import { AppContextProvider } from './context/AppContext';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import CreateAccount from './components/CreateAccount';
+import EventPage from './pages/Event';
+import CreateEvent from './pages/CreateEvent';
+import Home from './pages/Home';
+import CreateAccount from './pages/Signup';
 import './App.css';
 
 const App = () => {
@@ -14,7 +17,9 @@ const App = () => {
           <Route exact path="/register" component={CreateAccount} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
-          {/* <Route exact path="/" component={Home} /> */}
+          <Route exact path="/events" component={EventPage} />
+          <Route exact path="/createEvent" component={CreateEvent} />
+          <Route exact path="/" component={Home} />
         </Switch>
       </BrowserRouter>
     </AppContextProvider>
