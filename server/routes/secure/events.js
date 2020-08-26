@@ -20,7 +20,7 @@ router.post('/api/events', IsAdmin(), async (req, res) => {
 });
 
 // ***********************************************//
-// Get a specific task
+// Get a specific event
 // ***********************************************//
 router.get('/api/events/:id', async (req, res) => {
   const _id = req.params.id;
@@ -54,6 +54,20 @@ router.get('/api/events', async (req, res) => {
   }
 });
 
-//
+// ***********************************************//
+// Delete a task
+// ***********************************************//
+router.delete('/api/events/:id', async (req, res) => {
+  try {
+    const event = await Event.findOneAndDelete({
+      _id: req.params.id,
+      owner: req.user._id,
+    });
+    if (!event) throw new Error('Event not found');
+    res.json(event);
+  } catch (error) {
+    res.status(404).json({ error: error.toString() });
+  }
+});
 
 module.exports = router;

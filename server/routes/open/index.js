@@ -5,12 +5,13 @@ const router = require('express').Router(),
 // Create a user
 // ***********************************************//
 router.post('/api/users/', async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, admin } = req.body;
   try {
     const user = new User({
       name,
       email,
       password,
+      admin,
     });
 
     const token = await user.generateAuthToken();
