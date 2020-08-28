@@ -7,7 +7,7 @@ const router = require('express').Router(),
 // **************************************//
 // Create an Event
 // **************************************//
-router.post('/api/events', async (req, res) => {
+router.post('/api/events', IsAdmin(), async (req, res) => {
   console.log(req.body);
   const event = new Event({
     ...req.body,

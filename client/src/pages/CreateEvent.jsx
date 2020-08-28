@@ -1,53 +1,21 @@
 import React, { useState, useContext } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
 import { AppContext } from '../context/AppContext';
+import EventImage from '../components/EventImage';
 import axios from 'axios';
 
 const CreateEvent = ({ history }) => {
   const [eventData, setEventData] = useState(null);
   const { setLoading } = useContext(AppContext);
-  const [eventImage, setEventImage] = useState(null);
 
   const handleChange = (e) => {
     setEventData({ ...eventData, [e.target.name]: e.target.value });
   };
 
-  const handleEventImage = (e) => {
-    setEventImage(e.target.files[0]);
-    // const { data } = await axios.post('/api/events/img', avatar, {
-    //   withCredentials: true,
-    // });
-    // if (data) {
-    //   setEventImage(data.secure_url);
-    // }
-  };
-  console.log(eventImage);
   const handleEventSubmission = (e) => {
     const form = e.target;
     setLoading(true);
     e.preventDefault();
-    // const avatar = new FormData();
-    // avatar.append('avatar', eventImage, eventImage.name);
-
-    // setTimeout(() => {
-    //   console.log(avatar);
-    // }, 3000);
-
-    // try {
-    //   const response = await axios.post(
-    //     '/api/events',
-    //     { ...eventData, image: eventImage },
-    //     {
-    //       withCredentials: true,
-    //     },
-    //   );
-    //   console.log(response.data);
-    //   setEventData(null);
-    //   form.reset();
-    //   setLoading(false);
-    // } catch (error) {
-    //   console.log(error);
-    // }
 
     axios
       .post('/api/events', eventData, { withCredentials: true })
@@ -67,18 +35,7 @@ const CreateEvent = ({ history }) => {
         className="d-flex flex-column align-items-start justify-content-center"
         onSubmit={handleEventSubmission}
       >
-        <Form.Group className="mt-5 mb-5">
-          <Form.Label htmlFor="description">Event Thumbnail</Form.Label>
-          <Form.Control
-            type="file"
-            accept="image/*"
-            name="image"
-            onChange={handleEventImage}
-          />
-          <Button type="submit" size="sm" className="mt-4">
-            Save Image
-          </Button>
-        </Form.Group>
+        <EventImage />
         <Form.Group>
           <Form.Label htmlFor="description">Title</Form.Label>
           <Form.Control
