@@ -95,21 +95,6 @@ router.post('/api/events/entire', isAdmin(), async (req, res) => {
   console.log('Req Body', req.body);
   console.log('Req Files', req.files);
 
-  // try {
-  //   const response = await cloudinary.uploader.upload(
-  //     req.files.avatar.tempFilePath,
-  //   );
-  //   const event = new Event({
-  //     ...req.body,
-  //     owner: req.user._id,
-  //     image: response.secure_url,
-  //   });
-  //   await event.save();
-  //   res.status(201).json(event);
-  // } catch (e) {
-  //   res.status(400).json({ error: e.toString() });
-  //   console.log('Error Trig-2');
-  // }
   res.send('req.files');
 });
 
