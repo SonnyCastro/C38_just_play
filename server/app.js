@@ -5,6 +5,7 @@ const express = require('express'),
   passport = require('./middleware/authentication/'),
   userRoutes = require('./routes/secure/users'),
   eventRoutes = require('./routes/secure/events'),
+  fileUpload = require('express-fileupload'),
   cookieParser = require('cookie-parser');
 
 const app = express();
@@ -23,9 +24,15 @@ app.use(
     session: false,
   }),
 );
-
-app.use(userRoutes);
 app.use(eventRoutes);
+app.use(userRoutes);
+
+app.use(
+  fileUpload({
+    useTempFiles: true,
+    tempFileDir: '/tmp/images',
+  }),
+);
 
 // Serve any static files
 if (process.env.NODE_ENV === 'production') {
