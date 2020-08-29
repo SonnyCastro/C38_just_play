@@ -1,14 +1,13 @@
 const router = require('express').Router(),
   mongoose = require('mongoose'),
-  IsAdmin = require('../../middleware/authorization/index'),
+  isAdmin = require('../../middleware/authorization/index'),
   Event = require('../../db/models/event'),
   cloudinary = require('cloudinary');
 
 // **************************************//
 // Create an Event
 // **************************************//
-router.post('/api/events', IsAdmin(), async (req, res) => {
-  console.log(req.body);
+router.post('/api/events', isAdmin(), async (req, res) => {
   const event = new Event({
     ...req.body,
     owner: req.user._id,
@@ -18,6 +17,7 @@ router.post('/api/events', IsAdmin(), async (req, res) => {
     res.status(201).json(event);
   } catch (e) {
     res.status(400).json({ error: e.toString() });
+    console.log('Error Trig');
   }
 });
 
@@ -86,6 +86,31 @@ router.post('/api/events/img', async (req, res) => {
   } catch (error) {
     res.status(400).json({ error: error.toString() });
   }
+});
+
+// ***********************************************//
+// Upload entire event
+// ***********************************************//
+router.post('/api/events/entire', isAdmin(), async (req, res) => {
+  console.log('Req Body', req.body);
+  console.log('Req Files', req.files);
+
+  // try {
+  //   const response = await cloudinary.uploader.upload(
+  //     req.files.avatar.tempFilePath,
+  //   );
+  //   const event = new Event({
+  //     ...req.body,
+  //     owner: req.user._id,
+  //     image: response.secure_url,
+  //   });
+  //   await event.save();
+  //   res.status(201).json(event);
+  // } catch (e) {
+  //   res.status(400).json({ error: e.toString() });
+  //   console.log('Error Trig-2');
+  // }
+  res.send('req.files');
 });
 
 module.exports = router;

@@ -3,14 +3,20 @@ import { Form, Button, Image } from 'react-bootstrap';
 import { AppContext } from '../context/AppContext';
 import axios from 'axios';
 
-const EventImage = () => {
+const EventImage = ({ setImageData }) => {
   const [preview, setPreview] = useState(null);
   const [image, setImage] = useState(null);
   const { currentUser, setCurrentUser, setLoading } = useContext(AppContext);
 
   const handleChange = (event) => {
+    console.log('Event Target: ', event.target.files);
     setPreview(URL.createObjectURL(event.target.files[0]));
-    setImage(event.target.files[0]);
+    //setImage(event.target.files[0]);
+    const eventImg = new FormData();
+    eventImg.append('eventImg', event.target.files[0]);
+    setImageData(eventImg);
+
+    console.log('handle change', setImageData);
   };
 
   const handleImage = (event) => {
@@ -18,9 +24,11 @@ const EventImage = () => {
     setLoading(true);
     const avatar = new FormData();
     avatar.append('avatar', image, image.name);
+    console.log('img');
     axios
       .post('/api/events/img', avatar, { withCredentials: true })
       .then((response) => {
+        console.log(response.data.secure_url);
         setCurrentUser({ ...currentUser, avatar: response.data.secure_url });
         setLoading(false);
       })
@@ -29,7 +37,7 @@ const EventImage = () => {
 
   return (
     <>
-      <Form.Group className="mt-5 mb-5">
+      <Form.Group className="mt-5 mb-5" onSubmit={handleImage}>
         <Form.Label htmlFor="description">Event Thumbnail</Form.Label>
         <Image
           src={

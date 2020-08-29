@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Eventcard from '../components/EventCard';
+import { CardDeck } from 'react-bootstrap';
 import axios from 'axios';
 
 const Event = () => {
@@ -16,11 +17,13 @@ const Event = () => {
   }, []);
 
   return (
-    <div>
-      {events.map((event) => {
-        return <Eventcard key={event._id} event={event} />;
-      })}
-    </div>
+    <>
+      <CardDeck>
+        {events.map((event) => {
+          return <Eventcard key={event._id} event={event} />;
+        })}
+      </CardDeck>
+    </>
   );
 };
 

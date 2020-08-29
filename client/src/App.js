@@ -8,7 +8,6 @@ import Profile from './components/Profile';
 import PrivateRoute from './components/PrivateRoute';
 import CreateEvent from './pages/CreateEvent';
 import Home from './pages/Home';
-import CreateAccount from './pages/Signup';
 import './App.css';
 
 const App = () => {
@@ -16,7 +15,6 @@ const App = () => {
     <AppContextProvider>
       <BrowserRouter>
         <Switch>
-          <Route exact path="/register" component={CreateAccount} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/events" component={EventPage} />

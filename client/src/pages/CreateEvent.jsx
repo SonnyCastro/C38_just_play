@@ -3,22 +3,43 @@ import { Form, Button, Container } from 'react-bootstrap';
 import { AppContext } from '../context/AppContext';
 import EventImage from '../components/EventImage';
 import axios from 'axios';
+import './createEvent.css';
 
 const CreateEvent = ({ history }) => {
-  const [eventData, setEventData] = useState(null);
+  const [eventData, setEventData] = useState({});
+  const [imageData, setImageData] = useState(null);
   const { setLoading } = useContext(AppContext);
 
   const handleChange = (e) => {
-    setEventData({ ...eventData, [e.target.name]: e.target.value });
+    setEventData({
+      ...eventData,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleEventSubmission = (e) => {
     const form = e.target;
     setLoading(true);
     e.preventDefault();
+    // axios
+    //   .post('/api/events', eventData, { withCredentials: true })
+    //   .then((res) => {
+    //     console.log(res);
+    //     setEventData(null);
+    //     form.reset();
+    //     setLoading(false);
+    //     history.push('/events');
+    //   })
+    //   .catch((error) => console.log(error));
 
     axios
-      .post('/api/events', eventData, { withCredentials: true })
+      .post('/api/events/entire', imageData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        withCredentials: true,
+        body: eventData,
+      })
       .then((res) => {
         console.log(res);
         setEventData(null);
@@ -33,9 +54,10 @@ const CreateEvent = ({ history }) => {
     <Container>
       <Form
         className="d-flex flex-column align-items-start justify-content-center"
+        id="eventForm-container"
         onSubmit={handleEventSubmission}
       >
-        <EventImage />
+        <EventImage setImageData={setImageData} />
         <Form.Group>
           <Form.Label htmlFor="description">Title</Form.Label>
           <Form.Control
