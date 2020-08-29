@@ -4,7 +4,7 @@ const EventCard = ({ event }) => {
   return (
     <div>
       <Card>
-        <Card.Img variant="top" src="{event.image}" />
+        <Card.Img variant="top" src={event.image} />
         <Card.Body>
           <Card.Title>{event.title}</Card.Title>
           <Card.Text>{event.description}</Card.Text>

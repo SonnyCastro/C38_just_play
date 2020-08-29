@@ -1,13 +1,17 @@
 const router = require('express').Router(),
   mongoose = require('mongoose'),
-  isAdmin = require('../../middleware/authorization/index'),
-  Event = require('../../db/models/event'),
-  cloudinary = require('cloudinary');
-
+  fs = require('fs');
+(isAdmin = require('../../middleware/authorization/index')),
+  (Event = require('../../db/models/event')),
+  (cloudinary = require('cloudinary')),
+  (multer = require('multer'));
+storage = multer.memoryStorage();
+upload = multer({ dest: 'tmp/events' });
 // **************************************//
 // Create an Event
 // **************************************//
-router.post('/api/events', isAdmin(), async (req, res) => {
+router.post('/api/events', async (req, res) => {
+  console.log(req.body);
   const event = new Event({
     ...req.body,
     owner: req.user._id,
@@ -17,10 +21,8 @@ router.post('/api/events', isAdmin(), async (req, res) => {
     res.status(201).json(event);
   } catch (e) {
     res.status(400).json({ error: e.toString() });
-    console.log('Error Trig');
   }
 });
-
 // ***********************************************//
 // Get a specific event
 // ***********************************************//
@@ -28,17 +30,14 @@ router.get('/api/events/:id', async (req, res) => {
   const _id = req.params.id;
   if (!mongoose.Types.ObjectId.isValid(_id))
     return res.status(400).send('Not a valid task id');
-
   try {
     const event = await Event.findOne({ _id });
     if (!event) return res.sendStatus(404);
-
     res.json(event);
   } catch (e) {
     res.status(500).json({ error: e.toString() });
   }
 });
-
 // ***********************************************//
 // Get all event
 // ***********************************************//
@@ -55,7 +54,6 @@ router.get('/api/events', async (req, res) => {
     res.status(500).json({ error: e.toString() });
   }
 });
-
 // ***********************************************//
 // Delete a events
 // ***********************************************//
@@ -71,7 +69,6 @@ router.delete('/api/events/:id', async (req, res) => {
     res.status(404).json({ error: error.toString() });
   }
 });
-
 // ***********************************************//
 // Upload event img
 // ***********************************************//
@@ -87,30 +84,46 @@ router.post('/api/events/img', async (req, res) => {
     res.status(400).json({ error: error.toString() });
   }
 });
-
 // ***********************************************//
-// Upload entire event
+// Upload event img
 // ***********************************************//
-router.post('/api/events/entire', isAdmin(), async (req, res) => {
-  console.log('Req Body', req.body);
-  console.log('Req Files', req.files);
-
-  // try {
-  //   const response = await cloudinary.uploader.upload(
-  //     req.files.avatar.tempFilePath,
-  //   );
-  //   const event = new Event({
-  //     ...req.body,
-  //     owner: req.user._id,
-  //     image: response.secure_url,
-  //   });
-  //   await event.save();
-  //   res.status(201).json(event);
-  // } catch (e) {
-  //   res.status(400).json({ error: e.toString() });
-  //   console.log('Error Trig-2');
-  // }
-  res.send('req.files');
+const formMiddleWear = upload.fields([
+  {
+    name: 'image',
+    maxCount: 1,
+  },
+  {
+    name: 'textFields',
+    maxCount: 6,
+  },
+]);
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
-
+router.post('/api/events/all', formMiddleWear, async (req, res) => {
+  console.log(req.files.image[0]);
+  try {
+    const response = await cloudinary.uploader.upload(req.files.image[0].path);
+    const imageEvent = response.secure_url;
+    const event = new Event({
+      ...req.body,
+      image: response.secure_url,
+      owner: req.user._id,
+    });
+    console.log('Post Event', event);
+    await event.save();
+    res.send(event);
+    fs.unlinkSync(req.files.image[0].path, (err) => {
+      if (err) throw err;
+      // if no error, file has been deleted successfully
+      console.log('File deleted!');
+    });
+  } catch (error) {
+    console.log('Error msg', error);
+    res.send('Error', error);
+    // res.status(400).json({ error: error.toString() });
+  }
+});
 module.exports = router;
