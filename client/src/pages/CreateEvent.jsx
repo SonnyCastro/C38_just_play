@@ -21,17 +21,7 @@ const CreateEvent = ({ history }) => {
     const form = e.target;
     setLoading(true);
     e.preventDefault();
-    // axios
-    //   .post('/api/events', eventData, { withCredentials: true })
-    //   .then((res) => {
-    //     console.log(res);
-    //     setEventData(null);
-    //     form.reset();
-    //     setLoading(false);
-    //     history.push('/events');
-    //   })
-    //   .catch((error) => console.log(error));
-
+    
     axios
       .post('/api/events/entire', imageData, {
         headers: {
