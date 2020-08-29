@@ -1,9 +1,8 @@
-const { Mongoose } = require('mongoose');
-
 const router = require('express').Router(),
   mongoose = require('mongoose'),
-  event = require('../../db/models/event');
-
+  IsAdmin = require('../../middleware/authorization/index'),
+  Event = require('../../db/models/event'),
+  cloudinary = require('cloudinary');
 //Create a new Event (Async try await)
 
 router.post('/api/events', async (req, res) => {
@@ -36,6 +35,25 @@ router.post('/api/events', async (req, res) => {
     res.status(400).json({ error: error.tostring() });
   }
 });
+
+
+// **************************************//
+// Create an Event
+// **************************************//
+router.post('/api/events', async (req, res) => {
+  console.log(req.body);
+  const event = new Event({
+    ...req.body,
+    owner: req.user._id,
+  });
+  try {
+    await event.save();
+    res.status(201).json(event);
+  } catch (e) {
+    res.status(400).json({ error: e.toString() });
+  }
+});
+
 
 //Fetch(Grab) an Event by its unique ID
 
@@ -124,6 +142,22 @@ router.patch('/api/tasks/:id', async (req, res) => {
     updates.forEach((update) => (event[update] = req.body[update]));
     await event.save();
     res.json(event);
+  } catch (error) {
+    res.status(400).json({ error: error.toString() });
+  }
+});
+
+// ***********************************************//
+// Upload event img
+// ***********************************************//
+router.post('/api/events/img', async (req, res) => {
+  try {
+    const response = await cloudinary.uploader.upload(
+      req.files.avatar.tempFilePath,
+    );
+    req.user.avatar = response.secure_url;
+    await req.user.save();
+    res.json(response);
   } catch (error) {
     res.status(400).json({ error: error.toString() });
   }
