@@ -125,5 +125,12 @@ router.post('/api/events/all', formMiddleWear, async (req, res) => {
     res.send('Error', error);
     // res.status(400).json({ error: error.toString() });
   }
+
+router.post('/api/events/entire', isAdmin(), async (req, res) => {
+  console.log('Req Body', req.body);
+  console.log('Req Files', req.files);
+
+  res.send('req.files');
+
 });
 module.exports = router;
