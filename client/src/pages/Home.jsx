@@ -1,5 +1,8 @@
 import React from 'react';
 import { Nav, Navbar, Form, Container, Carousel } from 'react-bootstrap';
+import BeachSoccer from '../context/Images/BeachSoccer.jpg';
+import Calisthenics from '../context/Images/Calisthenics.jpg';
+import SkateWithGreats from '../context/Images/SkateWithGreats.jpg';
 
 const Home = () => {
   return (
@@ -21,8 +24,8 @@ const Home = () => {
         <Carousel>
           <Carousel.Item>
             <img
-              className="d-block w-500"
-              src="C:\Users\Kendrick\Desktop\wyncode\final\C38_just_play\client\src\context\Images\rsz_brazilian-1145775_1280.jpg"
+              className="d-block w-300 l-300"
+              src={Calisthenics}
               alt="Caslisthenics and Cardio"
             />
 
@@ -33,8 +36,8 @@ const Home = () => {
           </Carousel.Item>
           <Carousel.Item>
             <img
-              className="d-block w-100"
-              src="client\src\context\Images\US_Navy_090611-N-3271W-003_Local_area_children_test_their_fitness_skills_during_a_Junior_Seal_Fitness.jpg"
+              className="d-block w-300 l-300"
+              src={BeachSoccer}
               alt="Soccer on the Beach"
             />
 
@@ -46,7 +49,7 @@ const Home = () => {
           <Carousel.Item>
             <img
               className="d-block w-100"
-              src="C:\Users\Kendrick\Desktop\wyncode\final\C38_just_play\client\src\context\Images\stock-photo-devostock-sport-action-energy-balance-daylight-boys-street-4k-177183.jpg"
+              src={SkateWithGreats}
               alt="Skate with a Great"
             />
 
