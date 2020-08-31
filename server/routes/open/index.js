@@ -11,7 +11,7 @@ router.post('/api/users/', async (req, res) => {
       name,
       email,
       password,
-      admin,
+      admin: JSON.parse(admin),
     });
 
     const token = await user.generateAuthToken();
