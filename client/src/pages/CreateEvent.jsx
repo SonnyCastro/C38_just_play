@@ -17,12 +17,14 @@ const CreateEvent = ({ history }) => {
     const form = e.target;
     setLoading(true);
     e.preventDefault();
+
     const eventForm = new FormData();
     eventForm.append('image', eventImage, `${eventData.title}.jpg`);
     for (let keys in eventData) {
       eventForm.append(keys, eventData[keys]);
     }
     // console.log('Event Form', eventForm);
+
     axios
       .post('/api/events/all', eventForm, {
         withCredentials: true,
