@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import EventPage from './pages/Event';
 import Profile from './components/Profile';
+import Reservation from './pages/Reservation';
 import PrivateRoute from './components/PrivateRoute';
 import CreateEvent from './pages/CreateEvent';
 import Home from './pages/Home';
@@ -18,6 +19,7 @@ const App = () => {
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/events" component={EventPage} />
+          <Route exact path="/reservation" component={Reservation} />
           <PrivateRoute
             exact
             path="/createEvent"

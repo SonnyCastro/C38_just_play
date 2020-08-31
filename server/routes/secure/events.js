@@ -1,16 +1,16 @@
 const router = require('express').Router(),
   mongoose = require('mongoose'),
-  fs = require('fs');
-(isAdmin = require('../../middleware/authorization/index')),
-  (Event = require('../../db/models/event')),
-  (cloudinary = require('cloudinary')),
-  (multer = require('multer'));
+  fs = require('fs'),
+  isAdmin = require('../../middleware/authorization/index'),
+  Event = require('../../db/models/event'),
+  cloudinary = require('cloudinary'),
+  multer = require('multer');
 storage = multer.memoryStorage();
 upload = multer({ dest: 'tmp/events' });
 // **************************************//
 // Create an Event
 // **************************************//
-router.post('/api/events', async (req, res) => {
+router.post('/api/events', isAdmin, async (req, res) => {
   console.log(req.body);
   const event = new Event({
     ...req.body,
@@ -69,21 +69,7 @@ router.delete('/api/events/:id', async (req, res) => {
     res.status(404).json({ error: error.toString() });
   }
 });
-// ***********************************************//
-// Upload event img
-// ***********************************************//
-router.post('/api/events/img', async (req, res) => {
-  try {
-    const response = await cloudinary.uploader.upload(
-      req.files.avatar.tempFilePath,
-    );
-    req.user.avatar = response.secure_url;
-    await req.user.save();
-    res.json(response);
-  } catch (error) {
-    res.status(400).json({ error: error.toString() });
-  }
-});
+
 // ***********************************************//
 // Upload event img
 // ***********************************************//
@@ -106,7 +92,6 @@ router.post('/api/events/all', formMiddleWear, async (req, res) => {
   console.log(req.files.image[0]);
   try {
     const response = await cloudinary.uploader.upload(req.files.image[0].path);
-    const imageEvent = response.secure_url;
     const event = new Event({
       ...req.body,
       image: response.secure_url,
