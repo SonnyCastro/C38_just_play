@@ -18,7 +18,12 @@ const App = () => {
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/events" component={EventPage} />
-          <Route exact path="/createEvent" component={CreateEvent} />
+          <PrivateRoute
+            exact
+            path="/createEvent"
+            admin
+            component={CreateEvent}
+          />
           <PrivateRoute exact path="/profile" component={Profile} />
           <Route exact path="/" component={Home} />
         </Switch>

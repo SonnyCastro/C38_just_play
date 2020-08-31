@@ -6,12 +6,13 @@ const router = require('express').Router(),
 // ***********************************************//
 router.post('/api/users/', async (req, res) => {
   const { name, email, password, admin } = req.body;
+  console.log();
   try {
     const user = new User({
       name,
       email,
       password,
-      admin,
+      admin: JSON.parse(admin),
     });
 
     const token = await user.generateAuthToken();

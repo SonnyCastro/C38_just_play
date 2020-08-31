@@ -1,10 +1,11 @@
 import React from 'react';
+import './EventCard.css';
 import Card from 'react-bootstrap/Card';
 const EventCard = ({ event }) => {
   return (
     <div>
       <Card>
-        <Card.Img variant="top" src={event.image} />
+        <Card.Img variant="top" className="w-25 h-25" src={event.image} />
         <Card.Body>
           <Card.Title>{event.title}</Card.Title>
           <Card.Text>{event.description}</Card.Text>

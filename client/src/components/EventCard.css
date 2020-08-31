@@ -1,0 +1,5 @@
+* {
+  display: flexbox;
+  justify-content: center;
+  align-content: center;
+}
