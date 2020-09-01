@@ -14,6 +14,7 @@ const Event = () => {
   }, []);
   return (
     <div>
+    <div className="container">
       {events.map((event) => {
         return <Eventcard key={event._id} event={event} />;
       })}

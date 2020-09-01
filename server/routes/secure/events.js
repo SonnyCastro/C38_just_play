@@ -1,16 +1,17 @@
 const router = require('express').Router(),
   mongoose = require('mongoose'),
-  fs = require('fs');
-(isAdmin = require('../../middleware/authorization/index')),
-  (Event = require('../../db/models/event')),
-  (cloudinary = require('cloudinary')),
-  (multer = require('multer'));
+  fs = require('fs'),
+  isAdmin = require('../../middleware/authorization/index'),
+  Event = require('../../db/models/event'),
+  cloudinary = require('cloudinary'),
+  multer = require('multer');
 storage = multer.memoryStorage();
 upload = multer({ dest: 'tmp/events' });
+
 // **************************************//
 // Create an Event
 // **************************************//
-router.post('/api/events', async (req, res) => {
+router.post('/api/events', isAdmin, async (req, res) => {
   console.log(req.body);
   const event = new Event({
     ...req.body,
@@ -72,16 +73,42 @@ router.delete('/api/events/:id', async (req, res) => {
 // ***********************************************//
 // Upload event img
 // ***********************************************//
-router.post('/api/events/img', async (req, res) => {
+const formMiddleWear = upload.fields([
+  {
+    name: 'image',
+    maxCount: 1,
+  },
+  {
+    name: 'textFields',
+    maxCount: 6,
+  },
+]);
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+router.post('/api/events/all', formMiddleWear, async (req, res) => {
+  console.log(req.files.image[0]);
   try {
-    const response = await cloudinary.uploader.upload(
-      req.files.avatar.tempFilePath,
-    );
-    req.user.avatar = response.secure_url;
-    await req.user.save();
-    res.json(response);
+    const response = await cloudinary.uploader.upload(req.files.image[0].path);
+    const event = new Event({
+      ...req.body,
+      image: response.secure_url,
+      owner: req.user._id,
+    });
+    console.log('Post Event', event);
+    await event.save();
+    res.send(event);
+    fs.unlinkSync(req.files.image[0].path, (err) => {
+      if (err) throw err;
+      // if no error, file has been deleted successfully
+      console.log('File deleted!');
+    });
   } catch (error) {
-    res.status(400).json({ error: error.toString() });
+    console.log('Error msg', error);
+    res.send('Error', error);
+    // res.status(400).json({ error: error.toString() });
   }
 });
 // ***********************************************//

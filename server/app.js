@@ -6,6 +6,7 @@ const express = require('express'),
   userRoutes = require('./routes/secure/users'),
   eventRoutes = require('./routes/secure/events'),
   fileUpload = require('express-fileupload'),
+  reservation = require('./routes/secure/reservation'),
   cookieParser = require('cookie-parser');
 
 const app = express();
@@ -26,6 +27,7 @@ app.use(
 );
 app.use(eventRoutes);
 app.use(userRoutes);
+app.use(reservation);
 
 app.use(
   fileUpload({
