@@ -5,9 +5,9 @@ try {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
-    useFindAndModify: false
+    useFindAndModify: false,
   });
   console.log('Connected to MongoDB');
-} catch (e) {
-  console.log(e.toString());
+} catch (error) {
+  console.log(`Error: ${error}`);
 }

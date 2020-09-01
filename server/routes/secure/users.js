@@ -1,14 +1,27 @@
 const router = require('express').Router(),
   cloudinary = require('cloudinary').v2;
+isAdmin = require('../../middleware/authorization/index');
+
+// Admin ONLY route for authorization
+
+router.get('/api/admin', isAdmin(), async (req, res) => {
+  try {
+    res.json({ message: 'Admin User' });
+  } catch (error) {
+    res.status(401).json({ error: error.toString() });
+  }
+});
 
 // ***********************************************//
 // Get current user
 // ***********************************************//
+
 router.get('/api/users/me', async (req, res) => res.json(req.user));
 
 // ***********************************************//
 // Update a user
 // ***********************************************//
+
 router.patch('/api/users/me', async (req, res) => {
   const updates = Object.keys(req.body);
   const allowedUpdates = ['name', 'email', 'password', 'avatar'];
@@ -29,6 +42,7 @@ router.patch('/api/users/me', async (req, res) => {
 // ***********************************************//
 // Logout a user
 // ***********************************************//
+
 router.post('/api/users/logout', async (req, res) => {
   try {
     req.user.tokens = req.user.tokens.filter((token) => {
@@ -45,6 +59,7 @@ router.post('/api/users/logout', async (req, res) => {
 // ***********************************************//
 // Logout all devices
 // ***********************************************//
+
 router.post('/api/users/logoutAll', async (req, res) => {
   try {
     req.user.tokens = [];
@@ -59,6 +74,7 @@ router.post('/api/users/logoutAll', async (req, res) => {
 // ***********************************************//
 // Delete a user
 // ***********************************************//
+
 router.delete('/api/users/me', async (req, res) => {
   try {
     await req.user.remove();
@@ -72,6 +88,7 @@ router.delete('/api/users/me', async (req, res) => {
 // ***********************************************//
 // Upload avatar
 // ***********************************************//
+
 router.post('/api/users/avatar', async (req, res) => {
   try {
     const response = await cloudinary.uploader.upload(
@@ -81,7 +98,20 @@ router.post('/api/users/avatar', async (req, res) => {
     await req.user.save();
     res.json(response);
   } catch (error) {
-    res.json({ error: e.toString() });
+    res.json({ error: error.toString() });
+  }
+});
+
+//update password
+
+router.put('/api/password', async (req, res) => {
+  try {
+    req.user.password = req.body.password;
+    await req.user.save();
+    res.clearCookie('jwt');
+    res.json({ message: 'password updated successfully' });
+  } catch (error) {
+    res.json({ error: error.toString() });
   }
 });
 

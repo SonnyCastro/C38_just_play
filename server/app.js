@@ -13,11 +13,12 @@ const app = express();
 
 //Middleware
 app.use(express.json());
+app.use(openRoutes);
 
 // Unauthenticated routes
 app.use(openRoutes);
 
-// gives us access to resp.cookies
+// gives us access to req.cookies
 app.use(cookieParser());
 
 app.use(
