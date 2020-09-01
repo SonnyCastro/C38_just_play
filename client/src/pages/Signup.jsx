@@ -6,7 +6,7 @@ import axios from 'axios';
 import swal from 'sweetalert';
 
 const SignUp = ({ history }) => {
-  const [formData, setFormData] = useState(null);
+  const [formData, setFormData] = useState('');
   const { setCurrentUser } = useContext(AppContext);
 
   const handleChange = (event) => {
@@ -24,7 +24,7 @@ const SignUp = ({ history }) => {
       })
       .catch((error) => swal('Error', 'Please check the inputs', 'warning'));
   };
-
+  console.log(formData);
   return (
     <Container className="container d-flex flex-column align-items-center justify-content-center fullscreen">
       <h1 className="mb-4">Create Account!</h1>
@@ -58,6 +58,19 @@ const SignUp = ({ history }) => {
             name="password"
             onChange={handleChange}
           />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label htmlFor="admin">Account Type</Form.Label>
+          <Form.Control
+            id="admin"
+            as="select"
+            name="admin"
+            onChange={handleChange}
+          >
+            <option>Account Type</option>
+            <option value="true">Admin</option>
+            <option value="false">Guest</option>
+          </Form.Control>
         </Form.Group>
         <Form.Group className="d-flex justify-content-center">
           <Button type="submit">Create Account</Button>

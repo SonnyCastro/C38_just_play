@@ -1,28 +1,37 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
+import './cardStyle.css';
+import { useHistory } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
-import ListGroupItem from 'react-bootstrap/ListGroup';
+
 const EventCard = ({ event }) => {
+  const history = useHistory();
+
+  const handleClick = () => {
+    history.push('/reservation');
+  };
+
   return (
     <div>
-      <Card
-        style={{ width: '18rem' }}
-        className="container mt-5 d-flex flex-column align-items-center justify-content-center"
-      >
-        <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
+      <Card id="card">
+        <Card.Img variant="top" id="img" src={event.image} />
         <Card.Body>
           <Card.Title>{event.title}</Card.Title>
-          <Card.Text>h</Card.Text>
+          <Card.Text>{event.description}</Card.Text>
+          <Card.Text>{event.location}</Card.Text>
+          <Card.Text>{event.time}</Card.Text>
         </Card.Body>
-        <ListGroup className="list-group-flush">
-          <ListGroupItem>{event.description}</ListGroupItem>
-          <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
-          <ListGroupItem>Vestibulum at eros</ListGroupItem>
-        </ListGroup>
-        <Card.Body>
-          <Card.Link href="#">Card Link</Card.Link>
-          <Card.Link href="#">Another Link</Card.Link>
-        </Card.Body>
+        <Card.Footer>
+          <small className="text-muted">{event.price}</small>
+          <Button
+            variant="primary"
+            size="md"
+            onClick={handleClick}
+            className="ml-5"
+          >
+            Reserve
+          </Button>
+        </Card.Footer>
       </Card>
     </div>
   );

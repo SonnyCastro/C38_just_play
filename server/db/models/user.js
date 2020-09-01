@@ -104,7 +104,11 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
+<<<<<<< HEAD
 // Delete user events when a user is removed
+=======
+// Delete user event whe a user is removed
+>>>>>>> 5a685b0ebb265c5bc646b88266262631294188e5
 userSchema.pre('remove', async function (next) {
   const user = this;
   await Event.deleteMany({

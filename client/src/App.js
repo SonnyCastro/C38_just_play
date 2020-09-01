@@ -4,9 +4,13 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import EventPage from './pages/Event';
+import Profile from './components/Profile';
+import Reservation from './pages/Reservation';
+import PrivateRoute from './components/PrivateRoute';
 import CreateEvent from './pages/CreateEvent';
+import ResetPassword from './pages/ResetPassword';
+import UpdatePassword from './pages/UpdatePassword';
 import Home from './pages/Home';
-import CreateAccount from './pages/Signup';
 import './App.css';
 
 const App = () => {
@@ -14,11 +18,19 @@ const App = () => {
     <AppContextProvider>
       <BrowserRouter>
         <Switch>
-          <Route exact path="/register" component={CreateAccount} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/events" component={EventPage} />
-          <Route exact path="/createEvent" component={CreateEvent} />
+          <Route exact path="/reset-password" component={ResetPassword} />
+          <Route exact path="/update-password" component={UpdatePassword} />
+          <Route exact path="/reservation" component={Reservation} />
+          <PrivateRoute
+            exact
+            path="/createEvent"
+            admin
+            component={CreateEvent}
+          />
+          <PrivateRoute exact path="/profile" component={Profile} />
           <Route exact path="/" component={Home} />
         </Switch>
       </BrowserRouter>
