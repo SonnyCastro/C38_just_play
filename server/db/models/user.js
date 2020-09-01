@@ -104,7 +104,6 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
-// new \/
 // Delete user event whe a user is removed
 userSchema.pre('remove', async function (next) {
   const user = this;

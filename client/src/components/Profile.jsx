@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const Profile = ({ history: { push } }) => {
   const { currentUser, setCurrentUser, setLoading } = useContext(AppContext);
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState({});
   const [preview, setPreview] = useState(null);
 
   const handleImageSelect = (e) => {
