@@ -3,8 +3,10 @@ const router = require('express').Router(),
   fs = require('fs'),
   isAdmin = require('../../middleware/authorization/index'),
   Event = require('../../db/models/event'),
-<<<<<<< HEAD
-  cloudinary = require('cloudinary');
+  cloudinary = require('cloudinary'),
+  multer = require('multer');
+storage = multer.memoryStorage();
+upload = multer({ dest: 'tmp/events' });
 //Create a new Event (Async try await)
 
 router.post('/api/events', async (req, res) => {
@@ -38,13 +40,6 @@ router.post('/api/events', async (req, res) => {
   }
 });
 
-
-=======
-  cloudinary = require('cloudinary'),
-  multer = require('multer');
-storage = multer.memoryStorage();
-upload = multer({ dest: 'tmp/events' });
->>>>>>> 5a685b0ebb265c5bc646b88266262631294188e5
 // **************************************//
 // Create an Event
 // **************************************//
@@ -61,28 +56,16 @@ router.post('/api/events', isAdmin, async (req, res) => {
     res.status(400).json({ error: e.toString() });
   }
 });
-<<<<<<< HEAD
-
 
 //Fetch(Grab) an Event by its unique ID
 
 router.get('/api/events/:id', async (req, res) => {
-=======
-// ***********************************************//
-// Get a specific event
-// ***********************************************//
-router.get('/api/events/:id', async (req, res) => {
-  const _id = req.params.id;
-  if (!mongoose.Types.ObjectId.isValid(_id))
-    return res.status(400).send('Not a valid task id');
->>>>>>> 5a685b0ebb265c5bc646b88266262631294188e5
   try {
     const _id = req.params.id;
     if (!mongoose.Events.ObjectId.isValid(_id))
       return res.status(400).json({ error: 'not a valid event id' });
     const event = await Event.findOne({ _id, eventOwner: req.user._id });
     if (!event) return res.sendStatus(404);
-<<<<<<< HEAD
     res.json(task);
   } catch (error) {
     res.status(400).json({ error: error.tostring() });
@@ -91,16 +74,6 @@ router.get('/api/events/:id', async (req, res) => {
 
 // Get(grab) all Events
 
-=======
-    res.json(event);
-  } catch (e) {
-    res.status(500).json({ error: e.toString() });
-  }
-});
-// ***********************************************//
-// Get all event
-// ***********************************************//
->>>>>>> 5a685b0ebb265c5bc646b88266262631294188e5
 router.get('/api/events', async (req, res) => {
   try {
     const match = {},
@@ -129,15 +102,9 @@ router.get('/api/events', async (req, res) => {
     res.status(400).json({ error: error.toString() });
   }
 });
-<<<<<<< HEAD
 
 // Delete an Event
 
-=======
-// ***********************************************//
-// Delete a events
-// ***********************************************//
->>>>>>> 5a685b0ebb265c5bc646b88266262631294188e5
 router.delete('/api/events/:id', async (req, res) => {
   try {
     const event = await Event.findOneAndDelete({
@@ -223,7 +190,6 @@ router.post('/api/events/all', formMiddleWear, async (req, res) => {
     // res.status(400).json({ error: error.toString() });
   }
 });
-
 
 // ***********************************************//
 // Upload entire event

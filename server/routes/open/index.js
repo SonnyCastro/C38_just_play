@@ -1,9 +1,5 @@
 const router = require('express').Router(),
-<<<<<<< HEAD
- // { sendWelcomeEmail, forgotPasswordEmail } = require('../../emails/'),
-=======
-  { sendWelcomeEmail, forgotPasswordEmail } = require('../../emails/'),
->>>>>>> 5a685b0ebb265c5bc646b88266262631294188e5
+  // { sendWelcomeEmail, forgotPasswordEmail } = require('../../emails/'),
   jwt = require('jsonwebtoken'),
   User = require('../../db/models/user');
 
@@ -29,7 +25,7 @@ router.post('/api/users/', async (req, res) => {
       sameSite: 'Strict',
       secure: process.env.NODE_ENV !== 'production' ? false : true,
     });
-  //  sendWelcomeEmail(user.email, user.name);
+    //  sendWelcomeEmail(user.email, user.name);
     res.status(201).json(user);
   } catch (error) {
     console.log(error);
