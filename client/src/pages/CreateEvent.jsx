@@ -1,6 +1,7 @@
 import React, { useState, useContext, createRef } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
 import { AppContext } from '../context/AppContext';
+import './createEvent.css';
 import Spinner from 'react-bootstrap/Spinner';
 import axios from 'axios';
 const CreateEvent = ({ history }) => {
@@ -22,9 +23,6 @@ const CreateEvent = ({ history }) => {
     for (let keys in eventData) {
       eventForm.append(keys, eventData[keys]);
     }
-    console.log('Event Form', eventForm);
-
-    
 
     axios
       .post('/api/events/all', eventForm, {
@@ -32,7 +30,7 @@ const CreateEvent = ({ history }) => {
         'content-type': 'multipart/form-data',
       })
       .then((res) => {
-        console.log('Then Post: ', res);
+        // console.log('Then Post: ', res);
         setEventData(null);
         form.reset();
         setLoading(false);
@@ -43,7 +41,11 @@ const CreateEvent = ({ history }) => {
   return (
     <Container>
       {loading ? (
-        <Spinner animation="border" className="d-flex justify-content-center" />
+        <Spinner
+          animation="border"
+          id="loader"
+          className="d-flex justify-content-center"
+        />
       ) : (
         <Form
           className="d-flex flex-column align-items-start justify-content-center"

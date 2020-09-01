@@ -6,7 +6,6 @@ const router = require('express').Router(),
 // ***********************************************//
 router.post('/api/users/', async (req, res) => {
   const { name, email, password, admin } = req.body;
-  console.log();
   try {
     const user = new User({
       name,

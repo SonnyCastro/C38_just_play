@@ -1,34 +1,29 @@
-const mongoose = require('mongoose');
-const moment = require('moment');
-const eventSchema = new mongoose.Schema(
+const mongoose = require('mongoose'),
+  validator = require('validator');
+
+const eventReservation = new mongoose.Schema(
   {
-    title: {
+    name: {
       type: String,
       required: true,
+      trim: true,
     },
-    description: {
+    email: {
       type: String,
+      unique: true,
       required: true,
-    },
-    location: {
-      type: String,
-      required: true,
-    },
-    time: {
-      type: Date,
-      required: true,
-    },
-    type: {
-      type: String,
-      required: true,
-    },
-    attendees: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+      trim: true,
+      lowercase: true,
+      validate(value) {
+        if (!validator.isEmail(value)) {
+          throw new Error('Email is invalid.');
+        }
       },
-    ],
+    },
     price: {
+      type: String,
+    },
+    phoneNumber: {
       type: String,
     },
     user: {
@@ -36,22 +31,10 @@ const eventSchema = new mongoose.Schema(
       ref: 'User',
       required: true,
     },
-    rating: {
-      type: Number,
-    },
   },
   { timestamp: true },
 );
 
-eventSchema.methods.toJSON = function () {
-  const event = this;
-  const eventObject = event.toObject();
-  if (eventObject.time) {
-    eventObject.time = moment(eventObject.time).format('LLLL');
-  }
-  return eventObject;
-};
+const Reservation = mongoose.model('Reservation', eventReservation);
 
-const Event = mongoose.model('Event', eventSchema);
-
-module.exports = Event;
+module.exports = Reservation;
