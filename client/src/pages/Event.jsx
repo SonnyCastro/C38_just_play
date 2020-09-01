@@ -13,7 +13,7 @@ const Event = () => {
     getEvents();
   }, []);
   return (
-    <div className="container">
+    <div className="container d-flex justidy-content-center align-items-center .card-deck flex-wrap">
       {events.map((event) => {
         return <Eventcard key={event._id} event={event} />;
       })}

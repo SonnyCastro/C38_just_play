@@ -40,11 +40,7 @@ const CreateEvent = ({ history }) => {
   return (
     <Container>
       {loading ? (
-        <Spinner
-          animation="border"
-          id="loader"
-          className="d-flex justify-content-center"
-        />
+        <Spinner animation="border" id="loader" />
       ) : (
         <Form
           className="d-flex flex-column align-items-start justify-content-center"
