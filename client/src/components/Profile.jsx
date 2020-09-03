@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const Profile = ({ history: { push } }) => {
   const { currentUser, setCurrentUser, setLoading } = useContext(AppContext);
-  const [image, setImage] = useState({});
+  const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(null);
 
   const handleImageSelect = (e) => {
@@ -19,13 +19,8 @@ const Profile = ({ history: { push } }) => {
     const avatar = new FormData();
     avatar.append('avatar', image, image.name);
     try {
-      const updatedUser = await axios({
-        method: 'POST',
-        url: '/api/users/avatar',
-        data: avatar,
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
+      const updatedUser = await axios.post('/api/users/avatar', avatar, {
+        withCredentials: true,
       });
       setCurrentUser({ ...currentUser, avatar: updatedUser.data.secure_url });
     } catch (error) {

@@ -3,17 +3,44 @@ const moment = require('moment');
 
 const eventSchema = new mongoose.Schema(
   {
-    eventTitle: { type: String, required: true },
-    eventReccommendation: { type: String, required: true },
-    eventLocation: { type: String, required: true },
-    eventTime: { type: Date, required: true },
-    eventType: { type: Array, required: true },
-    eventAttendees: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-    eventPrice: { type: String, required: true },
-    eventOwner: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-    eventRating: { type: Number, max: 5 },
-    image: { type: String },
-  },  { timestamp: true },
+    image: {
+      type: String,
+    },
+    title: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    location: {
+      type: String,
+      required: true,
+    },
+    time: {
+      type: Date,
+      required: true,
+    },
+    attendees: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+      },
+    ],
+    price: {
+      type: String,
+    },
+    owner: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
+    },
+    rating: {
+      type: Number,
+    },
+  },
+  { timestamp: true },
 );
 
 eventSchema.methods.toJSON = function () {

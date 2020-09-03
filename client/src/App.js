@@ -24,12 +24,7 @@ const App = () => {
           <Route exact path="/reset-password" component={ResetPassword} />
           <Route exact path="/update-password" component={UpdatePassword} />
           <Route exact path="/reservation" component={Reservation} />
-          <PrivateRoute
-            exact
-            path="/createEvent"
-            admin
-            component={CreateEvent}
-          />
+          <PrivateRoute exact path="/createEvent" component={CreateEvent} />
           <PrivateRoute exact path="/profile" component={Profile} />
           <Route exact path="/" component={Home} />
         </Switch>

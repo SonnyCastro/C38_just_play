@@ -50,7 +50,7 @@ router.post('/api/users/logout', async (req, res) => {
     });
     await req.user.save();
     res.clearCookie('jwt');
-    res.json({ message: 'Logged out' });
+    res.redirect('/login');
   } catch (e) {
     res.status(500).json({ error: e.toString() });
   }

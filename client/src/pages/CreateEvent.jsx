@@ -1,16 +1,25 @@
 import React, { useState, useContext, createRef } from 'react';
-import { Form, Button, Container } from 'react-bootstrap';
+import { Form, Button, Container, Card } from 'react-bootstrap';
 import { AppContext } from '../context/AppContext';
 import './createEvent.css';
 import Spinner from 'react-bootstrap/Spinner';
 import axios from 'axios';
 const CreateEvent = ({ history }) => {
   const [eventData, setEventData] = useState({});
-  const { loading, setLoading } = useContext(AppContext);
   const [eventImage, setEventImage] = useState(null);
+  const [preview, setPreview] = useState(
+    'https://files.willkennedy.dev/wyncode/wyncode.png',
+  );
+  const { loading, setLoading, currentUser } = useContext(AppContext);
   const imgRef = createRef(null);
+
   const handleChange = (e) => {
     setEventData({ ...eventData, [e.target.name]: e.target.value });
+  };
+
+  const handleFormControll = (e) => {
+    setPreview(URL.createObjectURL(e.target.files[0]));
+    setEventImage(e.target.files[0]);
   };
 
   const handleEventSubmission = (e) => {
@@ -23,7 +32,6 @@ const CreateEvent = ({ history }) => {
     for (let keys in eventData) {
       eventForm.append(keys, eventData[keys]);
     }
-    // console.log('Event Form', eventForm);
 
     axios
       .post('/api/events/all', eventForm, {
@@ -31,8 +39,7 @@ const CreateEvent = ({ history }) => {
         'content-type': 'multipart/form-data',
       })
       .then((res) => {
-        // console.log('Then Post: ', res);
-        setEventData(null);
+        setEventData({});
         form.reset();
         setLoading(false);
         history.push('/events');
@@ -40,84 +47,104 @@ const CreateEvent = ({ history }) => {
       .catch((error) => console.log(error));
   };
   return (
-    <Container>
-      {loading ? (
-        <Spinner animation="border" id="loader" />
-      ) : (
-        <Form
-          className="d-flex flex-column align-items-start justify-content-center"
-          onSubmit={handleEventSubmission}
-        >
-          <Form.Group className="mt-5 mb-5">
-            <Form.Label htmlFor="description">Event Thumbnail</Form.Label>
-            <Form.Control
-              type="file"
-              accept="image/*"
-              name="image"
-              onChange={(e) => setEventImage(e.target.files[0])}
-              ref={imgRef}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label htmlFor="description">Title</Form.Label>
-            <Form.Control
-              id="description"
-              type="textbox"
-              name="title"
-              onChange={handleChange}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label htmlFor="dueDate">Description</Form.Label>
-            <Form.Control
-              id="description"
-              type="text"
-              name="description"
-              onChange={handleChange}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label htmlFor="dueDate">Location</Form.Label>
-            <Form.Control
-              id="location"
-              type="text"
-              name="location"
-              onChange={handleChange}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label htmlFor="dueDate">Time</Form.Label>
-            <Form.Control
-              id="time"
-              type="text"
-              name="time"
-              onChange={handleChange}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label htmlFor="dueDate">Type</Form.Label>
-            <Form.Control
-              id="type"
-              type="date"
-              name="type"
-              onChange={handleChange}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label htmlFor="dueDate">Price</Form.Label>
-            <Form.Control
-              id="price"
-              type="text"
-              name="price"
-              onChange={handleChange}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Button type="submit">Create Event!</Button>
-          </Form.Group>
-        </Form>
-      )}
-    </Container>
+    <>
+      <Container>
+        {loading ? (
+          <Spinner animation="border" id="loader" />
+        ) : (
+          currentUser?.admin && (
+            <>
+              <h1 className="d-flex justify-content-center mt-5">
+                Creat an Event!
+              </h1>
+              <Form
+                className="d-flex flex-column align-items-start justify-content-center"
+                onSubmit={handleEventSubmission}
+              >
+                <Form.Group className="mt-5 mb-5">
+                  <Form.Label htmlFor="description" id="eventThumb">
+                    Event Thumbnail
+                  </Form.Label>
+                  <div>
+                    {eventImage && (
+                      <img src={preview} alt={preview} id="eventImg" />
+                    )}
+                  </div>
+                  <Form.Control
+                    type="file"
+                    accept="image/*"
+                    name="image"
+                    onChange={(e) => handleFormControll(e)}
+                    ref={imgRef}
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label htmlFor="description">Title</Form.Label>
+                  <Form.Control
+                    id="description"
+                    type="textbox"
+                    name="title"
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label htmlFor="dueDate">Description</Form.Label>
+                  <Form.Control
+                    id="description"
+                    type="text"
+                    name="description"
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label htmlFor="dueDate">Location</Form.Label>
+                  <Form.Control
+                    id="location"
+                    type="text"
+                    name="location"
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label htmlFor="time">Date & Time</Form.Label>
+                  <Form.Control
+                    id="time"
+                    type="text"
+                    name="time"
+                    className="d-flex flex-wrap"
+                    placeholder="Wednesday, August 26, 2020 6:45 PM"
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label htmlFor="dueDate">Price</Form.Label>
+                  <Form.Control
+                    id="price"
+                    type="text"
+                    name="price"
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Button type="submit">Create Event!</Button>
+                </Form.Group>
+              </Form>
+              <Card style={{ width: '18rem', float: 'right' }}>
+                <Card.Img variant="top" src={preview} />
+                <Card.Body>
+                  <Card.Title>{eventData.title}</Card.Title>
+                  <Card.Text>{eventData.description}</Card.Text>
+                  <Card.Text>{eventData.location}</Card.Text>
+                  <Card.Text>{eventData.time}</Card.Text>
+                  <Card.Text>{eventData.price}</Card.Text>
+                  <Button variant="primary">Go somewhere</Button>
+                </Card.Body>
+              </Card>
+            </>
+          )
+        )}
+      </Container>
+    </>
   );
 };
 export default CreateEvent;
