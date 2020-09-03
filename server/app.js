@@ -13,13 +13,17 @@ const app = express();
 
 //Middleware
 app.use(express.json());
-app.use(openRoutes);
 
 // Unauthenticated routes
 app.use(openRoutes);
 
 // gives us access to req.cookies
 app.use(cookieParser());
+
+// Serve any static files
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/build')));
+}
 
 app.use(
   passport.authenticate('jwt', {
@@ -36,11 +40,6 @@ app.use(
     tempFileDir: '/tmp/images',
   }),
 );
-
-// Serve any static files
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client/build')));
-}
 
 // Any authentication middleware and related routing would be here.
 
