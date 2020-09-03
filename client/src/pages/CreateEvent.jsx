@@ -26,6 +26,7 @@ const CreateEvent = ({ history }) => {
     const form = e.target;
     setLoading(true);
     e.preventDefault();
+
     const eventForm = new FormData();
     eventForm.append('image', eventImage, `${eventData.title}.jpg`);
     for (let keys in eventData) {

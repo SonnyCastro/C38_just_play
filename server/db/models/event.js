@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const moment = require('moment');
+
 const eventSchema = new mongoose.Schema(
   {
     image: {
@@ -45,8 +46,10 @@ const eventSchema = new mongoose.Schema(
 eventSchema.methods.toJSON = function () {
   const event = this;
   const eventObject = event.toObject();
-  if (eventObject.time) {
-    eventObject.time = moment(eventObject.time).format('LLLL');
+  
+  if (eventObject.eventTime) {
+    eventObject.eventTime = moment(eventObject.eventTime).format('LLLL');
+
   }
   return eventObject;
 };
