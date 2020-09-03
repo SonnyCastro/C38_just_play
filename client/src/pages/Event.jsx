@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Eventcard from '../components/EventCard';
+import Nav from '../components/Navigation';
 import axios from 'axios';
 const Event = () => {
   const [events, setEvents] = useState([]);
@@ -13,11 +14,16 @@ const Event = () => {
     getEvents();
   }, []);
   return (
-    <div className="container d-flex justidy-content-center align-items-center .card-deck flex-wrap">
-      {events.map((event) => {
-        return <Eventcard key={event._id} event={event} />;
-      })}
-    </div>
+    <>
+      <Nav />
+      <h1 className="d-flex justify-content-center mt-5">Events</h1>
+      <div className="cardContainer">
+        {events.map((event) => {
+          return <Eventcard key={event._id} event={event} />;
+        })}
+      </div>
+    </>
   );
+  // className="container d-flex justidy-content-center align-items-center .card-deck flex-wrap"
 };
 export default Event;
