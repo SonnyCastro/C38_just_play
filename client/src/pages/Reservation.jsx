@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import './Reservation.css';
+import swal from 'sweetalert';
 
 const Reservation = () => {
   const handleSubmit = (e) => {
@@ -17,9 +18,11 @@ const Reservation = () => {
       },
       body: JSON.stringify(Object.fromEntries(formData)),
     })
-      .then((res) => res.json())
       .then((res) => {
-        console.log(res);
+        swal({
+          title: 'Reserved!',
+          icon: 'success',
+        });
         form.reset();
       })
       .catch((error) => {
@@ -30,7 +33,7 @@ const Reservation = () => {
   return (
     <div>
       <h1 className="container d-flex flex-column mt-5 align-items-center justify-content-center">
-        Reservation
+        Event Reservation
       </h1>
       <Form
         onSubmit={handleSubmit}

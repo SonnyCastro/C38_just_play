@@ -36,7 +36,7 @@ router.post('/api/users/logout', async (req, res) => {
     });
     await req.user.save();
     res.clearCookie('jwt');
-    res.json({ message: 'Logged out' });
+    res.redirect('/login');
   } catch (e) {
     res.status(500).json({ error: e.toString() });
   }
@@ -81,7 +81,7 @@ router.post('/api/users/avatar', async (req, res) => {
     await req.user.save();
     res.json(response);
   } catch (error) {
-    res.json({ error: e.toString() });
+    res.json({ error: error.toString() });
   }
 });
 

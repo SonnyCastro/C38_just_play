@@ -10,12 +10,16 @@
   margin-top: 430px;
 }
 
-/* div.container6 {
-  height: 10em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+#eventImg {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  float: left;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0px 6px 18px -9px rgba(0, 0, 0, 0.75);
 }
-div.container6 p {
-  margin: 0;
-} */
+
+#eventThumb {
+  align-items: flex-start;
+}
