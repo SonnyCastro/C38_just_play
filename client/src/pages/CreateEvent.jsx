@@ -3,6 +3,8 @@ import { Form, Button, Container, Card } from 'react-bootstrap';
 import { AppContext } from '../context/AppContext';
 import './createEvent.css';
 import Spinner from 'react-bootstrap/Spinner';
+import Navigation from '../components/Navigation';
+
 import axios from 'axios';
 const CreateEvent = ({ history }) => {
   const [eventData, setEventData] = useState({});
@@ -48,6 +50,7 @@ const CreateEvent = ({ history }) => {
   };
   return (
     <>
+      <Navigation />
       <Container>
         {loading ? (
           <Spinner animation="border" id="loader" />

@@ -3,6 +3,7 @@ import { Container, Image, Button } from 'react-bootstrap';
 // import Navigation from './Navigation';
 import { AppContext } from '../context/AppContext';
 import axios from 'axios';
+import Navigation from '../components/Navigation';
 
 const Profile = ({ history: { push } }) => {
   const { currentUser, setCurrentUser, setLoading } = useContext(AppContext);
@@ -47,7 +48,7 @@ const Profile = ({ history: { push } }) => {
 
   return (
     <>
-      {/* <Navigation /> */}
+      <Navigation />
       <Container className="d-flex justify-content-center align-items-center flex-column">
         <h1 className="mt-4">Your Profile</h1>
         <div className="mt-4">
