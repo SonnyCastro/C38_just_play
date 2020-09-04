@@ -7,6 +7,25 @@
   );
 } */
 
+.inline-buttons {
+  text-align: right;
+  margin-top: 4px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+.button1,
+.button2,
+.getstarted {
+  text-transform: uppercase;
+}
+.getstarted {
+  position: absolute;
+  bottom: 20px;
+  text-align: center;
+  z-index: 3;
+}
+
 .video-bg-container {
   position: absolute;
   top: 0;
