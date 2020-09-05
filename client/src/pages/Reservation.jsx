@@ -4,6 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import './Reservation.css';
 import swal from 'sweetalert';
+import Navigation from '../components/Navigation';
 
 const Reservation = () => {
   const handleSubmit = (e) => {
@@ -32,6 +33,8 @@ const Reservation = () => {
 
   return (
     <div>
+      <Navigation />
+
       <h1 className="container d-flex flex-column mt-5 align-items-center justify-content-center">
         Event Reservation
       </h1>

@@ -34,3 +34,8 @@
 .badge-xl {
   font-size: 18px;
 }
+
+.inline-buttons {
+  text-align: right;
+  margin-top: 4px;
+}

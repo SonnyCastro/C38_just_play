@@ -1,0 +1,10 @@
+.navbar {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: black;
+}
+
+.logo {
+  width: 75px;
+  height: 75px;
+}
