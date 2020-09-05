@@ -1,9 +1,9 @@
 import React from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Nav } from 'react-bootstrap';
+//import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import '../Styles/Navigation.css';
-import Logo from '../context/Images/favicon.ico';
+import Logo from '../context/Images/favicon.png';
 
 const Navigation = () => {
   const history = useHistory();
@@ -45,9 +45,9 @@ const Navigation = () => {
           <h6 className="mt-2">Reservations</h6>
         </Nav.Link>
 
-        <Navbar.Brand as={Link} style={{ color: 'white' }} to="/">
-          <img className="logo" href={Logo} alt="logo" />
-        </Navbar.Brand>
+        <Nav.Link href="/">
+          <img className="logo" src={Logo} alt="logo" />
+        </Nav.Link>
 
         <Nav.Link
           onClick={handleClick}
