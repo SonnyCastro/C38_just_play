@@ -95,7 +95,7 @@ const Reservation = () => {
           </Form.Group>
         </Form.Row>
 
-        {price == 'Free' ? null : (
+        {price === 'Free' ? null : (
           <>
             <Form.Row>
               <Form.Group className="mt-2">

@@ -1,8 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { Container, Image, Button } from 'react-bootstrap';
 // import Navigation from './Navigation';
+import { Link } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
 import axios from 'axios';
+import './Profile.css';
 import Navigation from '../components/Navigation';
 
 const Profile = ({ history: { push } }) => {
@@ -87,12 +89,17 @@ const Profile = ({ history: { push } }) => {
             </label>
             <p>{currentUser?.email}</p>
           </div>
-          <Button variant="danger" className="mb-2" onClick={handleDelete}>
-            Reset Password
-          </Button>
-          <Button variant="danger" onClick={handleDelete}>
-            Delete Account
-          </Button>
+          <div className="btn">
+            <Button variant="danger" as={Link} size="md" to="/update-password">
+              Update Password
+            </Button>
+            <Button variant="danger" as={Link} size="md" to="/reset-password">
+              Reset Password
+            </Button>
+            <Button variant="danger" size="md" onClick={handleDelete}>
+              Delete Account
+            </Button>
+          </div>
         </div>
       </Container>
     </>

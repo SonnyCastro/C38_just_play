@@ -1,31 +1,23 @@
 import React from 'react';
-
-var HomeLayout = React.createClass({
-  render: function () {
-    return (
-      <div>
-        var NewComponent = React.createClass({'{'}
-        render: function() {'{'}
-        return (
-        <div classname="wrapper">
-          <input type="checkbox" />
-          <div classname="video">
-            <video
-              src="https://www.robmillsarchitects.com/files/land/city/RMA_Web_land_city_1.mp4"
-              loop
-              muted
-              autoPlay
-            ></video>
-          </div>
-          <div classname="text">
-            <span data-text="Watch the video"></span>
-          </div>
-        </div>
-        );
-        {'}'}
-        {'}'});
+import './HomeLayout.scss';
+import BackgroundVideo from '../components/justplay.mp4';
+const HomeLayout = () => {
+  return (
+    <div class="wrapper">
+      <input type="checkbox" />
+      <div class="video" type="video" autoPlay>
+        <video
+          type=".mp4"
+          controls="true"
+          src={BackgroundVideo}
+          loop
+          autoPlay
+        ></video>
       </div>
-    );
-  },
-});
+      <div class="text">
+        <span data-text="WE WERE BORN TO PLAY"></span>
+      </div>
+    </div>
+  );
+};
 export default HomeLayout;

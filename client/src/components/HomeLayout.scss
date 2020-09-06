@@ -36,6 +36,7 @@
     position: relative;
     text-transform: uppercase;
     font-weight: 600;
+    font-size: 50px;
     letter-spacing: 0.2px;
     opacity: var(--opacity, 1);
     transition: opacity 0.3s var(--timing-function) 0.2s;
@@ -78,8 +79,8 @@
     }
   }
   input {
-    width: 220px;
-    height: 40px;
+    width: 100%;
+    height: 100%;
     margin: auto;
     position: absolute;
     left: 0;
@@ -131,4 +132,14 @@
       }
     }
   }
+}
+//--- ## BASIC #############
+body {
+  background: #e8ebf3;
+  height: 100vh;
+  font: 400 16px 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

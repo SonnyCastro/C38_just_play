@@ -1,12 +1,21 @@
-/* JUST FOR DEMO PURPORSES, REPLACE WITH YOUR OWN CODE */
-/* body {
-  background: radial-gradient(
-    circle,
-    rgba(1, 116, 12, 1) 0%,
-    rgba(255, 156, 0, 1) 64%
-  );
-} */
-
+.inline-buttons {
+  text-align: right;
+  margin-top: 4px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+.button1,
+.button2,
+.getstarted {
+  text-transform: uppercase;
+}
+.getstarted {
+  position: absolute;
+  bottom: 200px;
+  right: 830px;
+  z-index: 3;
+}
 .video-bg-container {
   position: absolute;
   top: 0;
@@ -26,16 +35,9 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
 .fullscreen {
   height: 100vh;
 }
-
 .badge-xl {
   font-size: 18px;
-}
-
-.inline-buttons {
-  text-align: right;
-  margin-top: 4px;
 }
