@@ -1,9 +1,8 @@
 import React from 'react';
 import { Nav } from 'react-bootstrap';
-//import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
+import Logo from '../images/favicon.png';
 import '../Styles/Navigation.css';
-import Logo from '../context/Images/favicon.png';
 
 const Navigation = () => {
   const history = useHistory();
@@ -66,37 +65,5 @@ const Navigation = () => {
     </>
   );
 };
+
 export default Navigation;
-
-// import React, { useState } from 'react';
-// import { Link } from 'react-router-dom';
-// import { Nav, Image } from 'react-bootstrap';
-// // import { AppContext } from '../context/AppContext';
-// import Logout from './Logout';
-
-// const Navigation = () => {
-//   return (
-//     <Nav justify variant="tabs" defaultActiveKey="/home">
-//       <Nav.Item>
-//         <Link as={Link} to="/">
-//           Home
-//         </Link>
-//       </Nav.Item>
-//       <Nav.Item>
-//         <Link as={Link} to="/event">
-//           Event
-//         </Link>
-//       </Nav.Item>
-//       <Nav.Item>
-//         <Link as={Link} to="/logout">
-//           Logout
-//         </Link>
-//       </Nav.Item>
-//       <Nav.Item>
-//         <Logout />
-//       </Nav.Item>
-//     </Nav>
-//   );
-// };
-
-// export default Navigation;
