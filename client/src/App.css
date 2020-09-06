@@ -13,7 +13,7 @@
 .getstarted {
   position: absolute;
   bottom: 200px;
-  right: 830px;
+  left: 45%;
   z-index: 3;
 }
 .video-bg-container {
