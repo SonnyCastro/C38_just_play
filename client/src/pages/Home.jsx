@@ -1,55 +1,43 @@
 import React from 'react';
 import { Container, Button, ButtonGroup } from 'react-bootstrap';
-// import { Link } from 'react-router-dom';
 import '../App.css';
-import BackgroundVideo from '../components/justplay.mp4';
+import HomeLayout from '../components/HomeLayout';
 
 const Home = () => {
   return (
-    <div>
-      <div className="inline-buttons" block="true">
-        <ButtonGroup className="mr-2" aria-label="First group">
+    <>
+      <HomeLayout />
+      <div>
+        <div className="inline-buttons" block="true">
+          <ButtonGroup className="mr-2" aria-label="First group">
+            <Button className="button1" variant="dark" size="lg" href="./login">
+              Login
+            </Button>
+          </ButtonGroup>
+          <ButtonGroup className="mr-2" aria-label="First group">
+            <Button
+              className="button2"
+              variant="dark"
+              size="lg"
+              inline
+              href="./Signup"
+            >
+              Create Account
+            </Button>
+          </ButtonGroup>
+        </div>
+        <Container>
           <Button
-            className="button1"
-            variant="primary"
+            className="getstarted"
+            variant="outline-dark"
             size="lg"
             href="./login"
           >
-            Login
+            <h1>Get Started!</h1>
           </Button>
-        </ButtonGroup>
-
-        <ButtonGroup className="mr-2" aria-label="First group">
-          <Button variant="primary" size="lg" inline href="./Signup">
-            Create Account
-          </Button>
-        </ButtonGroup>
+        </Container>
       </div>
-      <div class="video-bg-container">
-        <div>
-          <video
-            class="video-bg"
-            loop="true"
-            autoplay="autoplay"
-            controls="controls"
-            muted
-          >
-            <source src={BackgroundVideo} type="video/mp4" />
-          </video>
-        </div>
-      </div>
-      <Container>
-        <Button
-          variant="primary"
-          className="mt-4"
-          size="lg"
-          block
-          href="./login"
-        >
-          Learn More "Animation"
-        </Button>
-      </Container>
-    </div>
+    </>
   );
 };
 export default Home;

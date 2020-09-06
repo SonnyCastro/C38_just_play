@@ -18,9 +18,9 @@ const Login = ({ history }) => {
     axios
       .post('/api/users/login', formData)
       .then((response) => {
-        sessionStorage.setItem('user', response.data);
+        sessionStorage.setItem('user', JSON.stringify(response.data));
         setCurrentUser(response.data);
-        history.push('/');
+        history.push('/events');
       })
       .catch(() => swal('Oops!', 'something went wrong', 'warning'));
   };

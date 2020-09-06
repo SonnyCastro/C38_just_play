@@ -5,20 +5,20 @@ import Button from 'react-bootstrap/Button';
 import './Reservation.css';
 import swal from 'sweetalert';
 import PaymentInputs from '../components/StripeInput';
-import { useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Navigation from '../components/Navigation';
 
 const Reservation = () => {
-  const history = useHistory();
+  const { id } = useParams();
   const [price, setPrice] = useState('Free');
 
   useEffect(() => {
     axios
-      .get(`/api/events/${history.location.pathname.split('/')[2]}`)
+      .get(`/api/events/${id}`)
       .then((data) => setPrice(data.data.price))
       .catch((err) => console.log(err));
-  });
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
