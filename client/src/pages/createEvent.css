@@ -1,3 +1,7 @@
+/* * {
+  font-family: Arial, Helvetica, sans-serif;
+} */
+
 #eventForm-container {
   display: flex;
 }
@@ -10,9 +14,13 @@
   margin-top: 430px;
 }
 
+.input {
+  box-shadow: 0px 6px 18px -9px rgba(0, 0, 0, 0.75);
+}
+
 #eventImg {
-  width: 250px;
-  height: 250px;
+  width: 100%;
+
   border-radius: 50%;
   float: left;
   margin-top: 30px;
@@ -22,4 +30,25 @@
 
 #eventThumb {
   align-items: flex-start;
+}
+
+.text {
+  text-align: center;
+}
+
+#createEvent-container {
+  display: flex;
+  margin: 3rem;
+  justify-content: space-evenly;
+}
+
+#createEvent-card {
+  height: 600px;
+  margin: 50px;
+  width: 325px;
+}
+
+#createEvent-cardImg {
+  width: 200px;
+  padding-top: 40px;
 }

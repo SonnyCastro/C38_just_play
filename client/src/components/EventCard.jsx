@@ -6,26 +6,28 @@ import { useHistory } from 'react-router-dom';
 const EventCard = ({ event }) => {
   const history = useHistory();
 
-  const handleClick = () => {
-    history.push('/reservation');
+  const handleClick = (id) => {
+    history.push(`/reservation/${id}`, { event });
   };
 
   return (
     <div className="card">
-      <div className="bgColor">
+      <div>
         <img src={event.image} className="img" alt={event.image} />
       </div>
       <div className="card_info">
-        <h2>{event.title}</h2>
+        <h2 className="text1">
+          <strong>{event.title}</strong>
+        </h2>
         <h4>{event.description}</h4>
-        <h4>{event.location}</h4>
-        <h4>{event.time}</h4>
+        <h5>{event.location}</h5>
+        <p>{event.time}</p>
         <h4>{event.price}</h4>
         <Button
           variant="primary"
           size="md"
-          className="btn"
-          onClick={handleClick}
+          id="btn"
+          onClick={() => handleClick(event._id)}
         >
           Reserve
         </Button>

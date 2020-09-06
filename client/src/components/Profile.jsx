@@ -87,6 +87,9 @@ const Profile = ({ history: { push } }) => {
             </label>
             <p>{currentUser?.email}</p>
           </div>
+          <Button variant="danger" className="mb-2" onClick={handleDelete}>
+            Reset Password
+          </Button>
           <Button variant="danger" onClick={handleDelete}>
             Delete Account
           </Button>

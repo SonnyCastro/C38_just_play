@@ -25,6 +25,8 @@ const ResetPassword = () => {
           <Form.Label>Email address</Form.Label>
           <Form.Control
             type="email"
+            required
+            autoComplete="off"
             onChange={(event) => setEmail(event.target.value)}
           />
         </Form.Group>
