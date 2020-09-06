@@ -1,8 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { Container, Image, Button } from 'react-bootstrap';
-import Navigation from './Navigation';
+// import Navigation from './Navigation';
 import { AppContext } from '../context/AppContext';
 import axios from 'axios';
+import Navigation from '../components/Navigation';
 
 const Profile = ({ history: { push } }) => {
   const { currentUser, setCurrentUser, setLoading } = useContext(AppContext);

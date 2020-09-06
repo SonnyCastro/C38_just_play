@@ -7,6 +7,7 @@ import swal from 'sweetalert';
 import PaymentInputs from '../components/StripeInput';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import Navigation from '../components/Navigation';
 
 const Reservation = () => {
   const history = useHistory();
@@ -44,7 +45,9 @@ const Reservation = () => {
   };
 
   return (
-    <>
+    <div>
+      <Navigation />
+
       <h1 className="container d-flex flex-column mt-5 align-items-center justify-content-center">
         Event Reservation
       </h1>
@@ -109,7 +112,7 @@ const Reservation = () => {
           </Button>
         </Form.Row>
       </Form>
-    </>
+    </div>
   );
 };
 

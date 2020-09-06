@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Eventcard from '../components/EventCard';
-import Nav from '../components/Navigation';
+import Navigation from '../components/Navigation';
 import axios from 'axios';
 const Event = () => {
   const [events, setEvents] = useState([]);
@@ -15,7 +15,7 @@ const Event = () => {
   }, []);
   return (
     <>
-      <Nav />
+      <Navigation />
       <h1 className="d-flex justify-content-center mt-5">Events</h1>
       <div className="cardContainer">
         {events.map((event) => {
