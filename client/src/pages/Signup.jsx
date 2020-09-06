@@ -34,6 +34,9 @@ const SignUp = ({ history }) => {
           <Form.Control
             id="fullName"
             type="text"
+            required
+            className="input"
+            autoComplete="off"
             placeholder="Full Name"
             name="name"
             onChange={handleChange}
@@ -44,6 +47,9 @@ const SignUp = ({ history }) => {
           <Form.Control
             id="email"
             type="email"
+            required
+            className="input"
+            autoComplete="off"
             placeholder="Email Address"
             name="email"
             onChange={handleChange}
@@ -54,6 +60,9 @@ const SignUp = ({ history }) => {
           <Form.Control
             id="password"
             type="password"
+            required
+            className="input"
+            autoComplete="off"
             placeholder="Password"
             name="password"
             onChange={handleChange}
@@ -65,6 +74,9 @@ const SignUp = ({ history }) => {
             id="admin"
             as="select"
             name="admin"
+            className="input"
+            required
+            autoComplete="off"
             onChange={handleChange}
           >
             <option>Account Type</option>
@@ -73,10 +85,12 @@ const SignUp = ({ history }) => {
           </Form.Control>
         </Form.Group>
         <Form.Group className="d-flex justify-content-center">
-          <Button type="submit">Create Account</Button>
+          <Button type="submit" className="mt-3" variant="outline-primary">
+            Create Account
+          </Button>
         </Form.Group>
       </Form>
-      <Link className="mt-4" to="/login">
+      <Link className="mt-1" to="/login">
         Already have an account? Login.
       </Link>
     </Container>

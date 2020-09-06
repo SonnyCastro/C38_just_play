@@ -19,7 +19,7 @@ const eventSchema = new mongoose.Schema(
       required: true,
     },
     time: {
-      type: Date,
+      type: String,
       required: true,
     },
     attendees: [
@@ -46,10 +46,9 @@ const eventSchema = new mongoose.Schema(
 eventSchema.methods.toJSON = function () {
   const event = this;
   const eventObject = event.toObject();
-  
+
   if (eventObject.eventTime) {
     eventObject.eventTime = moment(eventObject.eventTime).format('LLLL');
-
   }
   return eventObject;
 };

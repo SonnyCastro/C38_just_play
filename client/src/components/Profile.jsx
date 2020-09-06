@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Container, Image, Button } from 'react-bootstrap';
-// import Navigation from './Navigation';
+import Navigation from './Navigation';
 import { AppContext } from '../context/AppContext';
 import axios from 'axios';
 
@@ -47,7 +47,7 @@ const Profile = ({ history: { push } }) => {
 
   return (
     <>
-      {/* <Navigation /> */}
+      <Navigation />
       <Container className="d-flex justify-content-center align-items-center flex-column">
         <h1 className="mt-4">Your Profile</h1>
         <div className="mt-4">
@@ -86,6 +86,9 @@ const Profile = ({ history: { push } }) => {
             </label>
             <p>{currentUser?.email}</p>
           </div>
+          <Button variant="danger" className="mb-2" onClick={handleDelete}>
+            Reset Password
+          </Button>
           <Button variant="danger" onClick={handleDelete}>
             Delete Account
           </Button>

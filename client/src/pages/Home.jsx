@@ -30,7 +30,13 @@ const Home = () => {
 
       <div className="video-bg-container">
         <div>
-          <video class="video-bg" loop autoPlay>
+          <video
+            class="video-bg"
+            loop="true"
+            autoplay="autoplay"
+            controls="controls"
+            muted
+          >
             <source src={BackgroundVideo} type="video/mp4" />
           </video>
         </div>

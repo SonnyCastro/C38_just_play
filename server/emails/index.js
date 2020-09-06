@@ -10,15 +10,15 @@ const sendWelcomeEmail = (email, name) => {
     color: blue;
   }
   </style>
-  <h1 class="sampleh1" >Welcome to Task API</h1>
+  <h1 class="sampleh1" >Welcome to JustPlay</h1>
   <div>We hope you find our app useful </div>
-  <div>etc etc blah blah blah </div>
+  <div>Feel free to contact us if you have any questions or concerns! </div>
   `;
   sgMail.send({
     to: email,
     from: `${process.env.FROM_EMAIL}`,
     subject: 'Thanks for signing up!',
-    text: `Hi ${name}! Welcome to your task manager api.`,
+    text: `Hi ${name}! Welcome to JustPlay.`,
     html: htmlEmail,
   });
 };
@@ -45,6 +45,26 @@ const sendCancellationEmail = (email, name) => {
   });
 };
 
+const sendReservationEmail = (email, name) => {
+  const htmlEmailResevation = `
+  <style>
+  .sampleH1{
+    color: blue;
+  }
+  </style>
+  <h1 class="sampleH1" >Your Reservation has been Confirmed!</h1>
+  <div>We hope you find our app useful </div>
+  <div>Feel free to contact us if you have any questions or concerns! Enjoy ${name} </div>
+  `;
+
+  sgMail.send({
+    to: email,
+    from: `${process.env.FROM_EMAIL}`,
+    subject: 'Reservation Confirmation',
+    html: htmlEmailResevation,
+  });
+};
+
 const PasswordEmail = (email, token) => {
   const exampleHTMLEmail = `
   <div>Click the link below to reset your password</div>
@@ -65,4 +85,5 @@ module.exports = {
   sendCancellationEmail,
   PasswordEmail,
   forgotPasswordEmail,
+  sendReservationEmail,
 };

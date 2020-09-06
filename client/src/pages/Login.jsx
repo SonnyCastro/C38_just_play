@@ -34,6 +34,7 @@ const Login = ({ history }) => {
           <Form.Control
             id="email"
             type="email"
+            required
             placeholder="Email Address"
             name="email"
             onChange={handleChange}
@@ -44,6 +45,7 @@ const Login = ({ history }) => {
           <Form.Control
             id="password"
             type="password"
+            required
             placeholder="Password"
             name="password"
             onChange={handleChange}
