@@ -13,7 +13,7 @@
 .getstarted {
   position: absolute;
   bottom: 200px;
-  right: 830px;
+  left: 45%;
   z-index: 3;
 }
 .video-bg-container {
@@ -40,4 +40,11 @@
 }
 .badge-xl {
   font-size: 18px;
+}
+#root {
+  height: 100%;
+  width: 100%;
+  background-image: url('../src/images/greenGrass.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
