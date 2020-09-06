@@ -49,17 +49,17 @@ const CreateEvent = ({ history }) => {
       .catch((error) => console.log(error));
   };
   return (
-    <>
+    <body id="background" style={{ color: 'white' }}>
       <Navigation />
+      <div id="header">
+        <h1>Creat an Event!</h1>
+      </div>
       <Container>
         {loading ? (
           <Spinner animation="border" id="loader" />
         ) : (
           currentUser?.admin && (
             <>
-              <h1 className="d-flex justify-content-center mt-5">
-                Creat an Event!
-              </h1>
               <div id="createEvent-container">
                 <Form
                   className="d-flex flex-column align-items-start justify-content-center"
@@ -69,11 +69,6 @@ const CreateEvent = ({ history }) => {
                     <Form.Label htmlFor="description" id="eventThumb">
                       Event Thumbnail
                     </Form.Label>
-                    {/* <div>
-                    {eventImage && (
-                      <img src={preview} alt={preview} id="eventImg" />
-                    )}
-                  </div> */}
                     <Form.Control
                       type="file"
                       accept="image/*"
@@ -156,7 +151,11 @@ const CreateEvent = ({ history }) => {
                   </Form.Group>
                 </Form>
 
-                <Card className="card" id="createEvent-card">
+                <Card
+                  className="card"
+                  style={{ color: 'black' }}
+                  id="createEvent-card"
+                >
                   <Card.Img
                     variant="top"
                     src={preview}
@@ -176,7 +175,7 @@ const CreateEvent = ({ history }) => {
           )
         )}
       </Container>
-    </>
+    </body>
   );
 };
 export default CreateEvent;

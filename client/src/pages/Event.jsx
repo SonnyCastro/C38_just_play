@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Eventcard from '../components/EventCard';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
+import './Event.css';
 import Navigation from '../components/Navigation';
 import axios from 'axios';
 
@@ -29,9 +30,14 @@ const Event = () => {
   }, []);
 
   return (
-    <>
+    <body id="backgroundEvent">
       <Navigation />
-      <h1 className="d-flex justify-content-center mt-5">Events</h1>
+      <h1
+        className="d-flex justify-content-center mt-5"
+        style={{ color: 'white' }}
+      >
+        Events
+      </h1>
       {!user?.admin ? null : (
         <div>
           <Button
@@ -44,12 +50,12 @@ const Event = () => {
         </div>
       )}
 
-      <div className="cardContainer">
+      <div id="test" className="cardContainer">
         {events.map((event) => {
           return <Eventcard key={event._id} event={event} />;
         })}
       </div>
-    </>
+    </body>
   );
 };
 export default Event;

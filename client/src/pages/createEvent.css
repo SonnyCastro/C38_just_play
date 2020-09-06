@@ -1,6 +1,9 @@
-/* * {
-  font-family: Arial, Helvetica, sans-serif;
-} */
+#header h1 {
+  display: flex;
+  justify-content: center;
+  font-size: 50px;
+  margin-top: 30px;
+}
 
 #eventForm-container {
   display: flex;
@@ -30,10 +33,6 @@
 
 #eventThumb {
   align-items: flex-start;
-}
-
-.text {
-  text-align: center;
 }
 
 #createEvent-container {
