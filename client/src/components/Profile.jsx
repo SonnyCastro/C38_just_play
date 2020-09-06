@@ -48,7 +48,7 @@ const Profile = ({ history: { push } }) => {
   };
 
   return (
-    <>
+    <body id="background" style={{ color: 'white' }}>
       <Navigation />
       <Container className="d-flex justify-content-center align-items-center flex-column">
         <h1 className="mt-4">Your Profile</h1>
@@ -101,7 +101,7 @@ const Profile = ({ history: { push } }) => {
           </div>
         </div>
       </Container>
-    </>
+    </body>
   );
 };
 export default Profile;

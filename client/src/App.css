@@ -1,4 +1,4 @@
-.inline-buttons {
+/* .inline-buttons {
   text-align: right;
   margin-top: 4px;
   position: absolute;
@@ -41,3 +41,8 @@
 .badge-xl {
   font-size: 18px;
 }
+
+#root {
+  height: 100%;
+  width: 100%;
+} */

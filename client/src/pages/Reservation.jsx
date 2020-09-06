@@ -18,7 +18,7 @@ const Reservation = () => {
       .get(`/api/events/${id}`)
       .then((data) => setPrice(data.data.price))
       .catch((err) => console.log(err));
-  }, []);
+  }, [id]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -45,7 +45,7 @@ const Reservation = () => {
   };
 
   return (
-    <div>
+    <div id="background" style={{ color: 'white' }}>
       <Navigation />
 
       <h1 className="container d-flex flex-column mt-5 align-items-center justify-content-center">
@@ -95,7 +95,7 @@ const Reservation = () => {
           </Form.Group>
         </Form.Row>
 
-        {price == 'Free' ? null : (
+        {price === 'Free' ? null : (
           <>
             <Form.Row>
               <Form.Group className="mt-2">

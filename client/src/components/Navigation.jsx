@@ -1,7 +1,8 @@
 import React from 'react';
 import { Nav } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
-import Logo from '../images/favicon.png';
+import Play from '../images/playicon.png';
 import '../Styles/Navigation.css';
 
 const Navigation = () => {
@@ -27,13 +28,13 @@ const Navigation = () => {
 
   return (
     <>
-      <div className="navbar" bg="dark">
+      <div className="navbar" style={{ backgroundColor: '#0d324c' }}>
         <Nav.Link
           onClick={handleClick}
           style={{ color: 'white' }}
           href="/events"
         >
-          <h6 className="mt-2">Events</h6>
+          <h4 className="mt-2">Events</h4>
         </Nav.Link>
 
         <Nav.Link
@@ -41,24 +42,25 @@ const Navigation = () => {
           style={{ color: 'white' }}
           href="/reservation"
         >
-          <h6 className="mt-2">Reservations</h6>
+          <h4 className="mt-2">Reservations</h4>
         </Nav.Link>
 
         <Nav.Link href="/">
-          <img className="logo" src={Logo} alt="logo" />
+          <img className="logo" src={Play} alt="play" />
         </Nav.Link>
 
         <Nav.Link
           onClick={handleClick}
           style={{ color: 'white' }}
-          href="/profile"
+          as={Link}
+          to="/profile"
         >
-          <h6 className="mt-2">Profile</h6>
+          <h4 className="mt-2">Profile</h4>
         </Nav.Link>
 
         <Nav className="mt-2" style={{ color: 'white' }}>
           <Nav.Link onClick={logout} style={{ color: 'white' }}>
-            <h6 className="mt-2">Logout</h6>
+            <h4 className="mt-2">Logout</h4>
           </Nav.Link>
         </Nav>
       </div>
