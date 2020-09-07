@@ -8,10 +8,6 @@ import '../Styles/Navigation.css';
 const Navigation = () => {
   const history = useHistory();
 
-  const handleClick = (e) => {
-    console.log(e.target.name);
-  };
-
   const logout = () => {
     fetch('/api/users/logout', {
       method: 'post',

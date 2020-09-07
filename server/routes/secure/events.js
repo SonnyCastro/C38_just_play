@@ -11,7 +11,6 @@ upload = multer({ dest: 'tmp/events' });
 // Create an Event
 // **************************************//
 router.post('/api/events', isAdmin, async (req, res) => {
-  console.log(req.body);
   const event = new Event({
     ...req.body,
     owner: req.user._id,
@@ -89,7 +88,6 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 router.post('/api/events/all', formMiddleWear, async (req, res) => {
-  console.log(req.files.image[0]);
   try {
     const response = await cloudinary.uploader.upload(req.files.image[0].path);
     const event = new Event({
@@ -97,18 +95,15 @@ router.post('/api/events/all', formMiddleWear, async (req, res) => {
       image: response.secure_url,
       owner: req.user._id,
     });
-    console.log('Post Event', event);
+
     await event.save();
     res.send(event);
     fs.unlinkSync(req.files.image[0].path, (err) => {
       if (err) throw err;
-      // if no error, file has been deleted successfully
       console.log('File deleted!');
     });
   } catch (error) {
-    console.log('Error msg', error);
     res.send('Error', error);
-    // res.status(400).json({ error: error.toString() });
   }
 });
 module.exports = router;

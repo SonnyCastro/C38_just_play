@@ -7,10 +7,7 @@ const router = require('express').Router(),
 // Create a user
 // ***********************************************//
 router.post('/api/users/', async (req, res) => {
-  console.log('hit route');
   const { name, email, password, admin } = req.body;
-  console.log(req.body);
-  console.log('ADMIN VALUE', admin);
   try {
     const user = new User({
       name,
