@@ -96,7 +96,9 @@ router.get('/api/password/:token', (req, res) => {
 
 module.exports = router;
 
+// ******************************
 // Reset Password
+// ******************************
 router.get('/api/password', async (req, res) => {
   try {
     const { email } = req.query,
