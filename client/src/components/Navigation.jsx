@@ -8,10 +8,6 @@ import '../Styles/Navigation.css';
 const Navigation = () => {
   const history = useHistory();
 
-  const handleClick = (e) => {
-    console.log(e.target.name);
-  };
-
   const logout = () => {
     fetch('/api/users/logout', {
       method: 'post',
@@ -29,19 +25,11 @@ const Navigation = () => {
   return (
     <>
       <div className="navbar" style={{ backgroundColor: '#0d324c' }}>
-        <Nav.Link
-          onClick={handleClick}
-          style={{ color: 'white' }}
-          href="/events"
-        >
+        <Nav.Link style={{ color: 'white' }} href="/events">
           <h4 className="mt-2">Events</h4>
         </Nav.Link>
 
-        <Nav.Link
-          onClick={(e) => handleClick(e)}
-          style={{ color: 'white' }}
-          href="/reservation"
-        >
+        <Nav.Link style={{ color: 'white' }} href="/reservation">
           <h4 className="mt-2">Reservations</h4>
         </Nav.Link>
 
@@ -49,12 +37,7 @@ const Navigation = () => {
           <img className="logo" src={Play} alt="play" />
         </Nav.Link>
 
-        <Nav.Link
-          onClick={handleClick}
-          style={{ color: 'white' }}
-          as={Link}
-          to="/profile"
-        >
+        <Nav.Link style={{ color: 'white' }} as={Link} to="/profile">
           <h4 className="mt-2">Profile</h4>
         </Nav.Link>
 

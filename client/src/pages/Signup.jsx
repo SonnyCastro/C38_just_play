@@ -25,7 +25,7 @@ const SignUp = ({ history }) => {
       })
       .catch((error) => swal('Error', 'Please check the inputs', 'warning'));
   };
-  console.log(formData);
+
   return (
     <body id="gradient">
       <div>

@@ -14,6 +14,7 @@ const Reservation = () => {
   const [price, setPrice] = useState('Free');
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     axios
       .get(`/api/events/${id}`)
       .then((data) => setPrice(data.data.price))
