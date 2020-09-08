@@ -91,7 +91,7 @@ We are a group of Wyncode students who wanted to use this opportunity to showcas
 
 **Sonny C.** Full Stack Junior Web Developmer from Wyncode's Cohort 38. With a background in hospitality and sports management, I have dived into my new passion about coding. Find my GitHub Porfile [here]!(https://github.com/SonnyCastro)  
 
-**Kendrick S.** Full Stack Junior web developer and recent graduate of Wyncode's Cohort 38. With an Associates Degree in Business Administration and a Certification in Business Management. As a former ARMY vet coding is now my new mission. find my GitHub Profile here  As a former Army Vet coding is now my new mission! Find my GitHub Porfile [here]!(https://github.com/skeedrick)
+**Kendrick S.** Full Stack Junior Web Developer and recent graduate of Wyncode's Cohort 38. With an Associates Degree in Business Administration and a Certification in Business Management. As a former Army Vet coding is now my new mission! Find my GitHub Porfile [here]!(https://github.com/skeedrick)
 
 ## Deployment 
 This project is deployed via heroku at [JustPlay]!(https://justplayy.herokuapp.com/)
