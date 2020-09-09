@@ -1,27 +1,97 @@
-# Final Project
+# Just Play
 
-## Setup
+## Intro
 
-- `git clone` this repo
-- `cd` into it.
-- `yarn install`
-- `cd client && yarn install`
-- `cp .env.sample .env`
+Just Play is a user-friendly web app for people who love to be active. Just Play allows people to connect and participate on events of their choosing. Users can look at information posted by Admins and later make a reservation to their desired event. Admins can also create events and incentivize users to participate. This makes it easy, reliable and fun for active people to participate new events and meet new people.
 
-## Available build commands
+Specific features include: 
 
-- `yarn dev`: Runs BOTH your Express.JS and React developer environment locally at the same time. Any logs coming from Express will be prefaced with `[0]`, any logs from `create-react-app` will be prefaced with `[1]`.
-- `yarn server`: Runs JUST your Express.JS server.
-- `yarn client`: Runs JUST your front-end React app.
+- Admin & Player Signup
+- Admin creation of Events
+- Profile Management 
+- Player or Admin Reservations to Events
+- Payment transaction for event.
+- Players & Admin email notification 
+- Admin image hosting.
 
-Open [http://localhost:3000](http://localhost:3000) to view your local React app in the browser. The page will reload if you make edits.
+## Apis & FrameWorks
 
-## To deploy
+We intevrated several APIs and frameworks into our site:
 
-NOTE: Heroku specifically runs `npm start`, so don't remove that from your package.json file.
+- SendGrid for email notifications
+- React-Bootstrap for the front end components and design
+- Cloudinary to upload and manage user images
+- Momentjs for our date formatting
+- React-payment-inputs for our payment feature
+- To keep track of login information, we used JWT-based token authentication, bcrypt for password hashing, and Passport for user authentication.
 
-- `heroku create your-app-name`
-- `heroku config:set MONGODB_URL=<insertYourAtlasDbUri>`
-- `git push heroku master`
+## Screenshots
 
+![alt text](Home.jpg)
+![alt text](Events.jpg)
+![alt text](Create.jpg)
+![alt text](Login.jpg)
+![alt text](Reservation.jpg)
+![alt text](Profile.jpg)
+![alt text](Reset.jpg)
+![alt text](Update.jpg)
+![alt text](CreateU.jpg)
 
+## Installation and Run on Local Machine 
+
+'#clone it
+git clone https://github.com/wyncode/C38_just_play.git
+
+#run yarn to install dependencies
+yarn install
+yarn && cd client && yarn
+
+#start both front and back end severs on one command
+cd .. && yarn dev'
+
+## Data
+- We used the MERN stack for our app: MongoDB to store data, Express for our server, React for our front end and Node.js as our runtime.
+- Used the MongoDB database to store our information. We have three models/collections: events, reservations and users, who can be classified as either admin who can create events or players who can reserve events. Players can reserve spots for events, but can't create events.
+
+## Sample Event: 
+![alt text](Eve.jpg)
+
+## Sample User:
+![alt text](User.jpg)
+
+## Sample Reservation:
+![alt text](Res.jpg)
+
+## Dependencies
+| Client Side | Server Side |
+| --- | ----------- |
+| axios | @sendgrid/mail |
+| bootstrap | bcryptjs |
+| moment | axios |
+| react | cloudinary |
+| react-bootstrap | concurrently |
+| react-dom | cookie-parser |
+| react-router-dom | express |
+| react-scripts | express-fileupload |
+|  | fs |
+|  | jsonwebtoken |
+|  | moment |
+|  | mongodb |
+|  | mongoose |
+|  | multer |
+|  | passport |
+|  | passport-jwt |
+|  | react-payment-inputs |
+|  | sweetalert |
+|  | validator |
+|  | fs |
+
+## About Us 
+We are a group of Wyncode students who wanted to use this opportunity to showcase what we have learned through this journey. By creating Just Play we created a fun, easy and reliable way to connect and be active with new people.
+
+**Sonny C.** Full Stack Junior Web Developmer from Wyncode's Cohort 38. With a background in hospitality and sports management, I have dived into my new passion about coding. Find my GitHub Porfile [here]!(https://github.com/SonnyCastro)  
+
+**Kendrick S.** Full Stack Junior Web Developer and recent graduate of Wyncode's Cohort 38. With an Associates Degree in Business Administration, a Certification in Business Management, and as an Army Veteran, coding is now my new mission. Find my GitHub Porfile [here]!(https://github.com/skeedrick)
+
+## Deployment 
+This project is deployed via heroku at [JustPlay]!(https://justplayy.herokuapp.com/)
