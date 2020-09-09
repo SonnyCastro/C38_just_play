@@ -27,7 +27,7 @@ We intevrated several APIs and frameworks into our site:
 
 ## Screenshots
 
-![Home]("./readme_assets/Home.jpg")
+![Home]("./readme_assets/Home.png")
 ![alt text](Events.jpg)
 ![alt text](Create.jpg)
 ![alt text](Login.jpg)
