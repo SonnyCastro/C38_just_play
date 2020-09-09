@@ -36,6 +36,7 @@ const Login = ({ history }) => {
               id="email"
               type="email"
               required
+              autoComplete="off"
               placeholder="Email Address"
               name="email"
               onChange={handleChange}

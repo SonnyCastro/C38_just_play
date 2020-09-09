@@ -7,6 +7,7 @@ const router = require('express').Router(),
   multer = require('multer');
 storage = multer.memoryStorage();
 upload = multer({ dest: 'tmp/events' });
+
 // **************************************//
 // Create an Event
 // **************************************//
@@ -87,6 +88,7 @@ cloudinary.config({
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
+
 router.post('/api/events/all', formMiddleWear, async (req, res) => {
   try {
     const response = await cloudinary.uploader.upload(req.files.image[0].path);
@@ -97,11 +99,11 @@ router.post('/api/events/all', formMiddleWear, async (req, res) => {
     });
 
     await event.save();
-    res.send(event);
     fs.unlinkSync(req.files.image[0].path, (err) => {
       if (err) throw err;
       console.log('File deleted!');
     });
+    res.status(201).send(event);
   } catch (error) {
     res.send('Error', error);
   }
