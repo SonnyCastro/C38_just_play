@@ -26,15 +26,15 @@ We intevrated several APIs and frameworks into our site:
 - To keep track of login information, we used JWT-based token authentication, bcrypt for password hashing, and Passport for user authentication.
 
 ## Screenshots
-![Home]("./readme_assets/Home.png")
-![Events]("./readme_assets/Events.png")
-![Create]("./readme_assets/Create.png")
-![Login]("./readme_assets/Login.png")
-![Reservation]("./readme_assets/Reservation.png")
-![Profile]("./readme_assets/Profile.png")
-![Reset]("./readme_assets/Reset.png")
-![Update]("./readme_assets/Update.png")
-![CreateU]("./readme_assets/CreateU.png")
+![Home]("readme_assets/Home.png")
+![Events]("readme_assets/Events.png")
+![Create]("readme_assets/Create.png")
+![Login]("readme_assets/Login.png")
+![Reservation]("readme_assets/Reservation.png")
+![Profile]("readme_assets/Profile.png")
+![Reset]("readme_assets/Reset.png")
+![Update]("readme_assets/Update.png")
+![CreateU]("readme_assets/CreateU.png")
 
 ## Installation and Run on Local Machine 
 
@@ -53,13 +53,13 @@ cd .. && yarn dev'
 - Used the MongoDB database to store our information. We have three models/collections: events, reservations and users, who can be classified as either admin who can create events or players who can reserve events. Players can reserve spots for events, but can't create events.
 
 ## Sample Event: 
-![Eve]("./readme_assets/Eve.png")
+![Eve]("readme_assets/Eve.png")
 
 ## Sample User:
-![User]("./readme_assets/User.png")
+![User]("readme_assets/User.png")
 
 ## Sample Reservation:
-![Res]("./readme_assets/Res.png")
+![Res]("readme_assets/Res.png")
 
 ## Dependencies
 | Client Side | Server Side |
