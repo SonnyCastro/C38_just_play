@@ -27,7 +27,7 @@ We intevrated several APIs and frameworks into our site:
 
 ## Screenshots
 
-![alt text](Home.jpg)
+[](Home.jpg)
 ![alt text](Events.jpg)
 ![alt text](Create.jpg)
 ![alt text](Login.jpg)
