@@ -7,10 +7,12 @@ const express = require('express'),
   eventRoutes = require('./routes/secure/events'),
   fileUpload = require('express-fileupload'),
   reservation = require('./routes/secure/reservation'),
+  morgan = require('morgan'),
   cookieParser = require('cookie-parser');
 
 const app = express();
 
+app.use(morgan('dev'));
 //Middleware
 app.use(express.json());
 
@@ -26,6 +28,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.use(
+  '/api/*',
   passport.authenticate('jwt', {
     session: false,
   }),

@@ -8,7 +8,7 @@ import './Home.css';
 
 const Home = () => {
   return (
-    <body id="background">
+    <div id="background">
       <div>
         <div>
           <div id="Logocontainer">
@@ -84,7 +84,7 @@ const Home = () => {
           </CardDeck>
         </div>
       </div>
-    </body>
+    </div>
   );
 };
 export default Home;

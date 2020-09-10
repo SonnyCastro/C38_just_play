@@ -28,7 +28,7 @@ const UpdatePassword = ({ history }) => {
       .catch((error) => console.log(error));
   };
   return (
-    <body id="background" style={{ color: 'white' }}>
+    <div id="background" style={{ color: 'white' }}>
       <Container className="d-flex flex-column align-items-center justify-content-center fullscreen">
         <h1 className="mt-5">Update Password</h1>
         <Form onSubmit={handleSubmit}>
@@ -55,7 +55,7 @@ const UpdatePassword = ({ history }) => {
           </Form.Group>
         </Form>
       </Container>
-    </body>
+    </div>
   );
 };
 

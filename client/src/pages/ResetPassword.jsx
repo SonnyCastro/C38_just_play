@@ -18,7 +18,7 @@ const ResetPassword = () => {
   };
 
   return (
-    <body id="background" style={{ color: 'white' }}>
+    <div id="background" style={{ color: 'white' }}>
       <Container className="d-flex flex-column align-items-center justify-content-center fullscreen">
         <h1 className="mt-5">Reset Password</h1>
         <Form onSubmit={handleSubmit}>
@@ -38,7 +38,7 @@ const ResetPassword = () => {
           </Form.Group>
         </Form>
       </Container>
-    </body>
+    </div>
   );
 };
 
