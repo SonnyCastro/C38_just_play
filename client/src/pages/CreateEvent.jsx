@@ -49,7 +49,7 @@ const CreateEvent = ({ history }) => {
       .catch((error) => console.log(error));
   };
   return (
-    <body id="background" style={{ color: 'white' }}>
+    <div id="background" style={{ color: 'white' }}>
       <Navigation />
       <div id="header">
         <h1>Creat an Event!</h1>
@@ -175,7 +175,7 @@ const CreateEvent = ({ history }) => {
           )
         )}
       </Container>
-    </body>
+    </div>
   );
 };
 export default CreateEvent;

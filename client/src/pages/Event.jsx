@@ -30,7 +30,7 @@ const Event = () => {
   }, []);
 
   return (
-    <body id="backgroundEvent">
+    <div id="backgroundEvent">
       <Navigation />
       <h1
         className="d-flex justify-content-center mt-5"
@@ -55,7 +55,7 @@ const Event = () => {
           return <Eventcard key={event._id} event={event} />;
         })}
       </div>
-    </body>
+    </div>
   );
 };
 export default Event;

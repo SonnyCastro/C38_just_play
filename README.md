@@ -27,15 +27,23 @@ We intevrated several APIs and frameworks into our site:
 
 ## Screenshots
 
-![Home]("./readme_assets/Home.png")
-![alt text](Events.jpg)
-![alt text](Create.jpg)
-![alt text](Login.jpg)
-![alt text](Reservation.jpg)
-![alt text](Profile.jpg)
-![alt text](Reset.jpg)
-![alt text](Update.jpg)
-![alt text](CreateU.jpg)
+![]("readme_assets/Home.png")
+
+![events](./../readme_assets/Events.png)
+
+![create](./../readme_assets/Create.png)
+
+![login](./../readme_assets/Login.png)
+
+![reservation](./../readme_assets/Reservation.png)
+
+![](./../readme_assets/Profile.png)
+
+![](./../readme_assets/Reset.png)
+
+![](./../readme_assets/Update.png)
+
+![](./../readme_assets/CreateU.png)
 
 ## Installation and Run on Local Machine 
 
@@ -63,28 +71,28 @@ cd .. && yarn dev'
 ![alt text](Res.jpg)
 
 ## Dependencies
-| Client Side | Server Side |
-| --- | ----------- |
-| axios | @sendgrid/mail |
-| bootstrap | bcryptjs |
-| moment | axios |
-| react | cloudinary |
-| react-bootstrap | concurrently |
-| react-dom | cookie-parser |
-| react-router-dom | express |
-| react-scripts | express-fileupload |
-|  | fs |
-|  | jsonwebtoken |
-|  | moment |
-|  | mongodb |
-|  | mongoose |
-|  | multer |
-|  | passport |
-|  | passport-jwt |
-|  | react-payment-inputs |
-|  | sweetalert |
-|  | validator |
-|  | fs |
+| Client Side      | Server Side          |
+| ---------------- | -------------------- |
+| axios            | @sendgrid/mail       |
+| bootstrap        | bcryptjs             |
+| moment           | axios                |
+| react            | cloudinary           |
+| react-bootstrap  | concurrently         |
+| react-dom        | cookie-parser        |
+| react-router-dom | express              |
+| react-scripts    | express-fileupload   |
+|                  | fs                   |
+|                  | jsonwebtoken         |
+|                  | moment               |
+|                  | mongodb              |
+|                  | mongoose             |
+|                  | multer               |
+|                  | passport             |
+|                  | passport-jwt         |
+|                  | react-payment-inputs |
+|                  | sweetalert           |
+|                  | validator            |
+|                  | fs                   |
 
 ## About Us 
 We are a group of Wyncode students who wanted to use this opportunity to showcase what we have learned through this journey. By creating Just Play we created a fun, easy and reliable way to connect and be active with new people.

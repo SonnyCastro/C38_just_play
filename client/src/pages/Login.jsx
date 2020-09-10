@@ -26,7 +26,7 @@ const Login = ({ history }) => {
   };
 
   return (
-    <body id="background" style={{ color: 'white' }}>
+    <div id="background" style={{ color: 'white' }}>
       <Container className="container d-flex flex-column align-items-center justify-content-center fullscreen">
         <h1 className="mb-4 mt-5">Login</h1>
         <Form style={{ width: 300 }} onSubmit={handleSubmit}>
@@ -66,7 +66,7 @@ const Login = ({ history }) => {
           Need an Account? Sign up.
         </Link>
       </Container>
-    </body>
+    </div>
   );
 };
 

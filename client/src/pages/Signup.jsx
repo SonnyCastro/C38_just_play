@@ -27,7 +27,7 @@ const SignUp = ({ history }) => {
   };
 
   return (
-    <body id="gradient">
+    <div id="gradient">
       <div>
         <Container className="container d-flex flex-column align-items-center s ">
           <h1 className="mb-4 box">Create Account!</h1>
@@ -104,7 +104,7 @@ const SignUp = ({ history }) => {
           </Link>
         </Container>
       </div>
-    </body>
+    </div>
   );
 };
 
