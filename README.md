@@ -27,15 +27,15 @@ We intevrated several APIs and frameworks into our site:
 
 ## Screenshots
 
-![Home]("readme_assets/Home.png")
-![Events]("readme_assets/Events.png")
-![Create]("readme_assets/Create.png")
-![Login]("readme_assets/Login.png")
-![Reservation]("readme_assets/Reservation.png")
-![Profile]("readme_assets/Profile.png")
-![Reset]("readme_assets/Reset.png")
-![Update]("readme_assets/Update.png")
-![CreateU]("readme_assets/CreateU.png")
+<img src="readme_assets/Home.png" alt="home"/>
+<img src="readme_assets/Events.png" alt="events" />
+<img src="readme_assets/Create.png" alt="create" />
+<img src="readme_assets/Login.png" alt="login" />
+<img src="readme_assets/Reservation.png" alt="reservation" />
+<img src="readme_assets/Profile.png" alt="profile" />
+<img src="readme_assets/Reset.png" alt="reset" />
+<img src="readme_assets/Update.png" alt="update" />
+<img src="readme_assets/CreateU.png" alt="createu" />
 
 ## Installation and Run on Local Machine
 
