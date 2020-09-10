@@ -16,14 +16,15 @@ const SignUp = ({ history }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log(formData);
     axios
-      .post('/api/users/', formData)
+      .post('/api/users', formData)
       .then((response) => {
-        sessionStorage.setItem('user', JSON.stringify(response.data));
+        sessionStorage.setItem('user', response.data);
         setCurrentUser(response.data);
         history.push('/');
       })
-      .catch((error) => swal('Error', 'Please check the inputs', 'warning'));
+      .catch((error) => swal('Error', error.toString()));
   };
 
   return (
@@ -88,13 +89,7 @@ const SignUp = ({ history }) => {
               </Form.Control>
             </Form.Group>
             <Form.Group className="d-flex justify-content-center">
-              <Button
-                type="submit"
-                className="mt-3"
-                as={Link}
-                to="/events"
-                variant="outline-primary"
-              >
+              <Button type="submit" className="mt-3" variant="outline-primary">
                 Create Account
               </Button>
             </Form.Group>
